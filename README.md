@@ -13,11 +13,8 @@
 <!-- PROJECT LOGO -->
 <br/>
 <div align="center">
-  <a href="https://chimoney.readme.io/reference/introduction">
+  <a href="https://chimoney.readme.io/reference/introduction"><strong>Explore the Chimoney API docs »</strong>
     <img src="Images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-    <a href="https://chimoney.readme.io/reference/introduction"><strong>Explore the Chimoney API docs »</strong></a>
-    <br />
     <br />
     <a href="">View Demo</a>
     ·
