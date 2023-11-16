@@ -16,13 +16,7 @@
   <a href="https://chimoney.readme.io/reference/introduction">
     <img src="Images/logo.png" alt="Logo" width="80" height="80">
   </a>
-
-  <h3 align="center">Best-README-Template</h3>
-
-  <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://chimoney.readme.io/reference/introduction"><strong>Explore the docs »</strong></a>
+    <a href="https://chimoney.readme.io/reference/introduction"><strong>Explore the Chimoney API docs »</strong></a>
     <br />
     <br />
     <a href="">View Demo</a>
