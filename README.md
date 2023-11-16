@@ -70,8 +70,8 @@ Currently the Chimoney API has Flutter, Python, PHP-Laravel, and Javascript SDKs
 
 To get started you need to:</br>
 
-1. **Sign up for a Chimoney Developer Account**:If you don't already have one, you'll need to sign up for a Chimoney developer account sandbox access [here](https://sandbox.chimoney.io/developers) </br>
-   You can also check out this article on how to obtain API keys [here](https://community-chimoney.hashnode.dev/getting-started-with-chimoneys-api-chiconnect).
+1. **Sign up for a Chimoney Developer Account**:If you don't already have one, sign up for a Chimoney developer account sandbox access [here](https://sandbox.chimoney.io/developers) </br>
+- You can also check out this article on how to obtain API keys [here](https://community-chimoney.hashnode.dev/getting-started-with-chimoneys-api-chiconnect).
 2. **Create a New Application**: Once logged in, navigate to your developer dashboard and create a new application. This will generate your API key for you.
 
 3. **Start Contributing**!
