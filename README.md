@@ -1,1 +1,1 @@
-# ChiMoneyChallengeGDSC
+# Chimoney SDK Challenge <> GDSC Covenant University
