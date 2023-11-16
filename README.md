@@ -1,8 +1,8 @@
 # Chimoney SDK Challenge <> GDSC Covenant University
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][https://github.com/dsccovenantuniversity/Chimoney-SDK-Challenge-Covenant-University/graphs/contributors]
-<!--[![Forks][forks-shield]][forks-url]
+<!--[![Contributors][contributors-shield]][https://github.com/dsccovenantuniversity/Chimoney-SDK-Challenge-Covenant-University/graphs/contributors]
+[![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
@@ -22,14 +22,14 @@
   <p align="center">
     An awesome README template to jumpstart your projects!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://chimoney.readme.io/reference/introduction"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/dsccovenantuniversity/Chimoney-SDK-Challenge-Covenant-University/issues">Request Feature</a>
   </p>
 </div>
 
@@ -41,11 +41,7 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
-    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
@@ -57,7 +53,6 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
