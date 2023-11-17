@@ -41,7 +41,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-challenge">About The Challenge</a>
+      <a href="#about-the-challenge">About The Project</a>
     </li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -59,8 +59,12 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
+Welcome to the Chimoney <> GDSC Covenant University SDK Challenge, a collaborative initiative between Chimoney and the Google Developer Student Club (GDSC) at Covenant UNiversity. This challenge invites student developers to showcase their skills and creativity by developing SDKs for the Chimoney API.
+Currently the Chimoney API has Flutter, Python, PHP-Laravel, and Javascript SDKs. In order to enhance our documentation and make the integration with the Chimoney API easier for developers we need more SDKs in other languages such as Golang, Java, C#, and Dart.
 
-Currently the Chimoney API has Flutter, Python, PHP-Laravel, and Javascript SDKs. In order to enhance our documentation and make the integration with the Chimoney API easier for developers we need more SDKs in other languages such as Golang, Java, C#, and Dart. This is an open source project that focuses on collaboration while developing more SDKs for the Chimoney API
+
+### About Chimoney
+Chimoney is a revolutionary fintech company transforming the way businesses make bulk payments globally. With our platform businesses can streamline their payouts, reduce costs, and enhance their overall financial efficiency.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -119,3 +123,5 @@ _Note:_ _Replace `SDK-Name` with the actual name of the SDK_
 
 This project is licensed under the [MIT License](Chimoney-SDK-Challenge-Covenant-University/LICENSE)
 
+## Contact
+For any questions or inquiries, please contact community@chimoney.io
