@@ -60,7 +60,7 @@
 
 ## About The Project
 
-Currently the Chimoney API has Flutter, Python, PHP-Laravel, and Javascript SDKs. In order to enhance our documentation and make the integration with the Chimoney API we need more SDKs in other languages such as Golang, Java, C#, and Dart. This is an open source project that focuses on collaboration while developing more SDKs for the Chimoney API
+Currently the Chimoney API has Flutter, Python, PHP-Laravel, and Javascript SDKs. In order to enhance our documentation and make the integration with the Chimoney API easier for developers we need more SDKs in other languages such as Golang, Java, C#, and Dart. This is an open source project that focuses on collaboration while developing more SDKs for the Chimoney API
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
