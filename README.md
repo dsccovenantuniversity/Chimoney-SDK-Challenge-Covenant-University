@@ -82,7 +82,7 @@ As a contributor, kindly ensure your contribution follows the SDK Checklist:
 
 #### ✅ SDK Checklist
 
-It is very important for us to maintain consistency in terms of structure and architecture for the SDKs. This checklist ensures we are able to accomplish this:
+It is very important for us to maintain consistency in terms of structure and architecture for the SDKs. This checklist ensures we are able to accomplish this.
 
 - [ ] Proper Coding Standards and Conventions
 - [ ] Proper Skeleton Structure
