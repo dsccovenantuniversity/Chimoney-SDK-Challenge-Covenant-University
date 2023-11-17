@@ -86,8 +86,7 @@ It is very important for us to maintain consistency in terms of structure and ar
 
 - [ ] Proper Coding Standards and Conventions
 - [ ] Proper Skeleton Structure
-- [ ] Readme Doc (Demo,Installation Guide, Usage)
-- [ ] Usage Example Docs
+- [ ] Readme Doc (Demo,Installation Guide, Usage Examples)
 - [ ] Error Handling
 - [ ] Tests
 
