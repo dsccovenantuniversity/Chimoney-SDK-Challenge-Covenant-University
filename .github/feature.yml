@@ -1,5 +1,5 @@
-name: "🚀 New SDK"
-description: "Suggest a new SDK"
+name: "🚀 Feature Request"
+description: "Suggest a new feature"
 title: "feat:"
 labels: ["feature"]
 body:
