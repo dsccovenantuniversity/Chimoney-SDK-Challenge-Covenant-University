@@ -19,7 +19,7 @@ public class BankAccount
     /// Bank Code
     /// </summary>
     [JsonPropertyName("account_bank")]
-    public string Account_Bank {  get; set; }
+    public string Account_Bank { get; set; }
 
     /// <summary>
     /// Account Number

@@ -130,7 +130,7 @@ public interface IChimoneyWrapperBase
     /// </summary>
     /// <param name="paymentRequest">The Payment Request Object</param>
     /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentInfo"/></returns>
-    Task<Response<PaymentInfo>> InitiatePaymentRequest(PaymentRequest paymentRequest);
+    Task<PaymentResponse<PaymentInfo>> InitiatePaymentRequest(PaymentRequest paymentRequest);
 
     /// <summary>
     /// Verify a payment
@@ -138,7 +138,7 @@ public interface IChimoneyWrapperBase
     /// <param name="transactionId">Transaction Id (issueID)</param>
     /// <param name="subAccount">Subaccount if any</param>
     /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentVerification"/></returns>
-    Task<Response<PaymentVerification>> VerifyPayment(string transactionId, string? subAccount = null);
+    Task<PaymentResponse<PaymentVerification>> VerifyPayment(string transactionId, string? subAccount = null);
 
     /// <summary>
     /// Simulate a card or other status change. Accepted include ["failed", "expired", "fraud"]. Only works in staging
@@ -147,6 +147,13 @@ public interface IChimoneyWrapperBase
     /// <param name="status">Status to change to</param>
     /// <param name="subAccount">Subaccount if any</param>
     /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentVerification"/></returns>
-    Task<Response<PaymentVerification>> Simulate(string issueId, string status, string? subAccount = null);
+    /// 
+    Task<PaymentResponse<PaymentVerification>> Simulate(string issueId, Status status, string? subAccount = null);
+    //TODO add enum for status
+    #endregion
+
+    #region Payout
+
+
     #endregion
 }

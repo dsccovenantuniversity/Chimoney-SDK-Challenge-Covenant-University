@@ -6,7 +6,7 @@ namespace ChimoneyDotNet.Models;
 public class TransferDetail
 {
     public string Sender { get; set; }
-    public string Wallet {  get; set; }
+    public string Wallet { get; set; }
     public decimal ValueInUSD { get; set; }
     public string TnxID { get; set; }
     public string Receiver { get; set; }

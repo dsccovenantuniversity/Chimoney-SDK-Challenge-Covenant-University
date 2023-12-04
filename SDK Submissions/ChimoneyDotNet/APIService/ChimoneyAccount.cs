@@ -87,7 +87,7 @@ public partial class Chimoney
         url += $"?id={id}";
         var request = SetupRequestObject(HttpMethod.Post, url);
 
-        if(subAccount != null)
+        if (subAccount != null)
         {
             var dataObject = new
             {
@@ -102,7 +102,8 @@ public partial class Chimoney
 
         //HACK weird behaviour here
         // the api can return a response like
-        // "data" : { "error message"}
+        // "status" : "success"
+        // "data" : "error message"
         // causing deserialization to fail
         //Easy fix is including try catch on all such methods. *sigh*
         try
@@ -132,7 +133,7 @@ public partial class Chimoney
         url += $"?issueID={issueId}";
         var request = SetupRequestObject(HttpMethod.Post, url);
 
-        if(subAccount != null)
+        if (subAccount != null)
         {
             var json = JsonSerializer.Serialize(new
             {

@@ -1,4 +1,6 @@
 ﻿
+using System.Text.Json.Serialization;
+
 namespace ChimoneyDotNet.Models;
 
 public class PaymentRequest
@@ -16,12 +18,13 @@ public class PaymentRequest
     /// <summary>
     /// Url to redirect to after payment in confirmed
     /// </summary>
+    [JsonPropertyName("redirect_url")]
     public string Redirect_Url { get; set; }
 
     /// <summary>
     /// Subaccount if any
     /// </summary>
-    public string? SubAccount {  get; set; } = null;
+    public string? SubAccount { get; set; } = null;
 
     /// <summary>
     /// <see cref="Dictionary{string, string}"/> containing metadata you want to pass to the request to use later

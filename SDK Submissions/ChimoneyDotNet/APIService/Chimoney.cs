@@ -1,5 +1,6 @@
 ﻿
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ChimoneyDotNet;
 
@@ -20,7 +21,9 @@ public partial class Chimoney : IChimoneyWrapperBase
     private readonly static JsonSerializerOptions serializerOptions = new()
     {
         PropertyNameCaseInsensitive = true,
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
     /// <summary>
@@ -62,8 +65,7 @@ public partial class Chimoney : IChimoneyWrapperBase
 
     public static void Dispose()
     {
-       _httpClient.Dispose();
+        _httpClient.Dispose();
     }
-
 
 }

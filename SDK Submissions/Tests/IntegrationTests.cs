@@ -1,7 +1,7 @@
 using ChimoneyDotNet.Models;
 
-namespace Tests;
-public class WrapperIntegrationTests
+namespace ChimoneyTests;
+public class IntegrationTests
 {
     private readonly IChimoneyWrapperBase chimoneyWrapper = new
         Chimoney("d3cd6f0247c5f4f7b398def389138b132a05e6443884f56b2fae3ed21e4ea47c");
@@ -177,14 +177,14 @@ public class WrapperIntegrationTests
     [Fact]
     public async Task Verify_BankAccounts_Returns_Success()
     {
-        var accounts = new List<BankAccount>() 
-        { 
-            new() 
+        var accounts = new List<BankAccount>()
+        {
+            new()
             {
                 CountryCode = "NG",
                 Account_Bank = "044",
                 Account_Number = "0690000032"
-            } 
+            }
         };
 
 
@@ -194,5 +194,68 @@ public class WrapperIntegrationTests
         Assert.IsAssignableFrom<IEnumerable<BankAccount>>(result.Data);
     }
 
+    #endregion
+
+    #region Payment
+
+    [Fact]
+    public async Task Make_Payment_Returns_Success()
+    {
+        PaymentRequest paymentRequest = new()
+        {
+            PayerEmail = "devs@chimoney.io",
+            Redirect_Url = "https://test.com",
+            ValueInUSD = 10,
+            Meta = new()
+            {
+                { "key", "value" }
+            }
+        };
+
+        var result = await chimoneyWrapper.InitiatePaymentRequest(paymentRequest);
+        Assert.NotNull(result);
+        Assert.Equal(success, result.Status);
+
+        PaymentRequest paymentRequestSubAccount = new()
+        {
+            PayerEmail = "devs@chimoney.io",
+            Redirect_Url = "https://test.com",
+            ValueInUSD = 10,
+            SubAccount = "jnirjmt0405jmd",
+            Meta = new()
+            {
+                { "key", "value" }
+            }
+        };
+
+        var resultSubAccount = await chimoneyWrapper.InitiatePaymentRequest(paymentRequestSubAccount);
+        Assert.NotNull(resultSubAccount);
+        Assert.Equal("sender must be a valid Chimoney user ID", resultSubAccount.Message);
+    }
+
+
+    [Fact]
+    public async Task Verify_Payment_Returns_Success()
+    {
+        var result = await chimoneyWrapper.VerifyPayment("random_id");
+        Assert.NotNull(result);
+        Assert.Equal(success, result.Status);
+
+        var resultSubAccount = await chimoneyWrapper.VerifyPayment("random_id", "random_id");
+        Assert.NotNull(resultSubAccount);
+        Assert.Equal("sender must be a valid Chimoney user ID", resultSubAccount.Message);
+    }
+
+    [Fact]
+    public async Task Simulate_Payment_Returns_Messsage()
+    {
+        var result = await chimoneyWrapper.Simulate("random_id", Status.Failed);
+        Assert.NotNull(result);
+        Assert.Equal("Cannot change status to failed", result.Message);
+
+        var resultSubAccount = await chimoneyWrapper.Simulate("random_id", Status.Failed, "random_id");
+        Assert.NotNull(resultSubAccount);
+        Assert.Equal("sender must be a valid Chimoney user ID", resultSubAccount.Message);
+    }
     #endregion
 }

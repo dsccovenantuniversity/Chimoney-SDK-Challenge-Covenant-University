@@ -130,9 +130,9 @@ public partial class Chimoney
         //{
         //    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         //};
-        var json = JsonSerializer.Serialize(new 
-        { 
-            verifyAccountNumbers = bankAccounts 
+        var json = JsonSerializer.Serialize(new
+        {
+            verifyAccountNumbers = bankAccounts
         });
 
         request.Content = new StringContent(json, Encoding.UTF8, "application/json");

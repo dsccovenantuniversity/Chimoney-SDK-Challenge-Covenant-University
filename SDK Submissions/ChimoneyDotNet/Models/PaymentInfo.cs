@@ -21,7 +21,7 @@ public class PaymentInfo
     public string PaymentLink { get; set; }
     public string Error { get; set; }
     //TODO figure out that data field
-    public IEnumerable<Dictionary<string,string>> Data { get; set; }
+    public IEnumerable<Dictionary<string, string>> Data { get; set; }
 
     //TODO: Add CryptoPayment
     //public class CryptoPayment
