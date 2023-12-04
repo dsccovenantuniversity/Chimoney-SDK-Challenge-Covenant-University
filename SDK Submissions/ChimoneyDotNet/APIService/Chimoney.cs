@@ -20,6 +20,7 @@ public partial class Chimoney : IChimoneyWrapperBase
     private readonly static JsonSerializerOptions serializerOptions = new()
     {
         PropertyNameCaseInsensitive = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
     };
 
     /// <summary>
@@ -63,4 +64,6 @@ public partial class Chimoney : IChimoneyWrapperBase
     {
        _httpClient.Dispose();
     }
+
+
 }

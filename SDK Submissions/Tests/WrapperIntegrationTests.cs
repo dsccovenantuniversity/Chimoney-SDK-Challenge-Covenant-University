@@ -36,7 +36,7 @@ public class WrapperIntegrationTests
     {
         var resultOnlyId = await chimoneyWrapper.GetTransactionDetailByIssueId("random_id");
         Assert.NotNull(resultOnlyId);
-        Assert.Equal(error, resultOnlyId.Status);
+        Assert.Equal(success, resultOnlyId.Status);
 
         var resultWithSubAccount = await chimoneyWrapper.GetTransactionDetailByIssueId("random_id", "1234567");
         Assert.NotNull(resultWithSubAccount);

@@ -9,70 +9,44 @@ namespace ChimoneyDotNet;
 public interface IChimoneyWrapperBase
 {
     #region Account
-    /// <summary>
-    /// Get transaction details by issue Id
-    /// </summary>
-    /// <param name="issueId">IssueID of the transaction</param>
-    /// <returns>An instance of TransactionResponse</returns>
-    Task<Response<TransactionDetail>> GetTransactionDetailByIssueId(string issueId);
 
     /// <summary>
     /// Get transaction details by issue Id
     /// </summary>
     /// <param name="issueId">IssueID of the transaction</param>
     /// <param name="subAccout">Subaccount if any.</param>
-    /// <returns>An instance of TransactionResponse</returns>
-    Task<Response<TransactionDetail>> GetTransactionDetailByIssueId(string issueId, string subAccout);
+    /// <returns><seealso cref="Response{T}"/> where <see cref="T"/> is <see cref="TransactionDetail"/></returns>
+    Task<Response<TransactionDetail>> GetTransactionDetailByIssueId(string issueId, string? subAccount = null);
 
     /// <summary>
     /// Get all transactions by an account.
     /// </summary>
     /// <param name="subAccount">Subaccount if any.</param>
-    /// <returns>An array of type TransactionResponse</returns>
-    Task<Response<IEnumerable<TransactionDetail>>> GetAllTransactionsByAccount(string subAccount);
-
-    /// <summary>
-    /// Get all transactions by an account.
-    /// </summary>
-    /// <returns>An array of type TransactionResponse</returns>
-    Task<Response<IEnumerable<TransactionDetail>>> GetAllTransactionsByAccount();
+    /// <returns><seealso cref="Response{T}"/> where T is <see cref="IEnumerable{TransactionDetail}"/> </returns>
+    Task<Response<IEnumerable<TransactionDetail>>> GetAllTransactionsByAccount(string? subAccount = null);
 
     /// <summary>
     /// Get single transaction detail
     /// </summary>
     /// <param name="id">Transaction Id</param>
-    /// <returns>An instance of TransactionResponse</returns>
-    Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id);
-
-    /// <summary>
-    /// Get single transaction detail
-    /// </summary>
-    /// <param name="id">Transaction Id</param>
-    /// <param name="subAccount">Subaccount</param>
-    /// <returns>An instance of TransactionResponse</returns>
-    Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id, string subAccount);
+    /// <param name="subAccount">Subaccount if any</param>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="TransactionDetail"/></returns>
+    Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id, string? subAccount = null);
 
     /// <summary>
     /// Account Transfer
     /// </summary>
     /// <param name="accountTransfer">Account Transfer Object</param>
-    /// <returns></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="TransferDetail"/></returns>
     Task<Response<TransferDetail>> AccountTransfer(AccountTransfer accountTransfer);
-
-    /// <summary>
-    /// Deletes an unpaid Transaction
-    /// </summary>
-    /// <param name="chiRef">Transaction reference</param>
-    /// <returns></returns>
-    Task<Response<Transaction>> DeleteTransfer(string chiRef);
 
     /// <summary>
     /// Deletes an unpaid Transaction.
     /// </summary>
     /// <param name="chiRef">Transaction reference</param>
-    /// <param name="subAccount">Subaccount</param>
-    /// <returns></returns>
-    Task<Response<Transaction>> DeleteTransfer(string chiRef, string subAccount);
+    /// <param name="subAccount">Subaccount if any</param>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="Transaction"/></returns>
+    Task<Response<Transaction>> DeleteTransfer(string chiRef, string? subAccount = null);
 
     #endregion 
 
@@ -81,55 +55,55 @@ public interface IChimoneyWrapperBase
     /// <summary>
     /// Get list of all supported airtime countries
     /// </summary>
-    /// <returns></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="string[]"/></returns>
     Task<Response<string[]>> GetSupportedAirtimeCountries();
 
     /// <summary>
     /// Get list of all assets
     /// </summary>
-    /// <returns><see cref="AssetsResponse"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="BenefitsData"/></returns>
     Task<Response<BenefitsData>> GetAllAssets();
 
     /// <summary>
     /// Get list of all assets
     /// </summary>
     /// <param name="countryCode">Country Code sybmol e.g NG, GH, US</param>
-    /// <returns><see cref="AssetsResponse"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="BenefitsData"/></returns>
     Task<Response<BenefitsData>> GetAllAssets(string countryCode);
 
     /// <summary>
     /// Get list of supported banks and bank code
     /// </summary>
     /// <param name="countryCode">Country Code sybmol e.g NG, GH, US</param>
-    /// <returns><see cref="BankListResponse"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="(IEnumerable{Bank})"/></returns>
     Task<Response<IEnumerable<Bank>>> GetSupportedBanks(string countryCode);
 
     /// <summary>
     /// Get list of bank branches and branch code.
     /// </summary>
     /// <param name="bankCode">bankCode code from <see cref="GetSupportedBanks(string)"/></param>
-    /// <returns><see cref="Response{IEnumerable{BankBranch}}"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="{IEnumerable{BankBranch}}"/></returns>
     Task<Response<IEnumerable<BankBranch>>> GetBankBranches(string bankCode);
 
     /// <summary>
     /// Get exhange rates
     /// </summary>
-    /// <returns><see cref="ExchangeRatesResponse"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="Dictionary{string,decimal}"/></returns>
     // use Dictionary<string,decimal> for data field
-    Task<Response<Dictionary<string,decimal>>> GetExchangeRates();
+    Task<Response<Dictionary<string, decimal>>> GetExchangeRates();
 
     /// <summary>
     /// Convert local currency amount to USD
     /// </summary>
     /// <param name="originCurrency">Currency symbol e.g NGN, USD.</param>
     /// <param name="amountInOriginCurrency">amount to be converted.</param>
-    /// <returns><see cref="Response{ConversionToUSD}"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="ConversionToUSD"/></returns>
     Task<Response<ConversionToUSD>> ConvertLocalCurrencyToUSD(string originCurrency, decimal amountInOriginCurrency);
 
     /// <summary>
     /// Get list of all supported mobile money codes
     /// </summary>
-    /// <returns></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="(IEnumerable{MobileMoneyCode})"/></returns>
     Task<Response<IEnumerable<MobileMoneyCode>>> GetSupportedMobileMoneyCodes();
 
     /// <summary>
@@ -137,21 +111,42 @@ public interface IChimoneyWrapperBase
     /// </summary>
     /// <param name="destinationCurrency">currency symbol e.g NGN, KES.</param>
     /// <param name="amountInUSD">amount in usd</param>
-    /// <returns><see cref="USDToLocalConversionResponse"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="USDToLocalConversion"/></returns>
     Task<Response<USDToLocalConversion>> GetUSDAmountInLocal(string destinationCurrency, decimal amountInUSD);
 
     /// <summary>
     /// verify a bank account number or multiple bank account numbers
     /// </summary>
     /// <param name="bankAccount"></param>
-    /// <returns><see cref="Response{IEnumerable{BankAccount}}"/></returns>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="(IEnumerable{BankAccount})"/></returns>
     Task<Response<IEnumerable<BankAccount>>> VerifyBankAccounts(IEnumerable<BankAccount> bankAccounts);
 
     #endregion
 
     #region Payments
 
-    Task<Response<>> InitiatePaymentRequest(PaymentRequest paymentRequest);
+    /// <summary>
+    /// Initiate a payment request
+    /// </summary>
+    /// <param name="paymentRequest">The Payment Request Object</param>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentInfo"/></returns>
+    Task<Response<PaymentInfo>> InitiatePaymentRequest(PaymentRequest paymentRequest);
 
+    /// <summary>
+    /// Verify a payment
+    /// </summary>
+    /// <param name="transactionId">Transaction Id (issueID)</param>
+    /// <param name="subAccount">Subaccount if any</param>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentVerification"/></returns>
+    Task<Response<PaymentVerification>> VerifyPayment(string transactionId, string? subAccount = null);
+
+    /// <summary>
+    /// Simulate a card or other status change. Accepted include ["failed", "expired", "fraud"]. Only works in staging
+    /// </summary>
+    /// <param name="issueId">The transaction Id (IssueID)</param>
+    /// <param name="status">Status to change to</param>
+    /// <param name="subAccount">Subaccount if any</param>
+    /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentVerification"/></returns>
+    Task<Response<PaymentVerification>> Simulate(string issueId, string status, string? subAccount = null);
     #endregion
 }

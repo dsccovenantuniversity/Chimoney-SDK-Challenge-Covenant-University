@@ -44,24 +44,10 @@ public partial class Chimoney
         return transferResponse ?? throw new NonSerializableResponseException(content);
     }
 
-    public async Task<Response<Transaction>> DeleteTransfer(string chiRef)
-    {
-        string url = BaseAPIUrl + $"/accounts/delete-unpaid-transaction?chiRef={chiRef}";
-        var request = SetupRequestObject(HttpMethod.Delete, url);
-
-        var response = await _httpClient.SendAsync(request);
-        var content = await response.Content.ReadAsStringAsync();
-
-        var deleteResponse = JsonSerializer.Deserialize<Response<Transaction>>
-            (content, serializerOptions);
-
-        return deleteResponse ?? throw new NonSerializableResponseException(content);
-    }
-
-    public async Task<Response<Transaction>> DeleteTransfer(string chiRef, string subAccount)
+    public async Task<Response<Transaction>> DeleteTransfer(string chiRef, string? subAccount = null)
     {
         string url = BaseAPIUrl + "/accounts/delete-unpaid-transaction";
-        url += $"?chiRef={chiRef}&subAccount={subAccount}";
+        url += subAccount == null ? $"?chiRef={chiRef}" : $"?chiRef={chiRef}&subAccount={subAccount}";
         var request = SetupRequestObject(HttpMethod.Delete, url);
 
         var response = await _httpClient.SendAsync(request);
@@ -73,15 +59,19 @@ public partial class Chimoney
         return deleteResponse ?? throw new NonSerializableResponseException(content);
     }
 
-    public async Task<Response<IEnumerable<TransactionDetail>>> GetAllTransactionsByAccount(string subAccount)
+    public async Task<Response<IEnumerable<TransactionDetail>>> GetAllTransactionsByAccount(string? subAccount = null)
     {
         string url = BaseAPIUrl + "accounts/transactions";
         var request = SetupRequestObject(HttpMethod.Post, url);
-        var json = JsonSerializer.Serialize(new
+        if (subAccount != null)
         {
-            subAccount
-        });
-        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            var dataObject = new
+            {
+                subAccount
+            };
+            string json = JsonSerializer.Serialize(dataObject);
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        }
 
         var response = await _httpClient.SendAsync(request);
         var content = await response.Content.ReadAsStringAsync();
@@ -91,24 +81,21 @@ public partial class Chimoney
         return transactions ?? throw new NonSerializableResponseException(content);
     }
 
-    public async Task<Response<IEnumerable<TransactionDetail>>> GetAllTransactionsByAccount()
-    {
-        string url = BaseAPIUrl + "accounts/transactions";
-        var request = SetupRequestObject(HttpMethod.Post, url);
-
-        var response = await _httpClient.SendAsync(request);
-        var content = await response.Content.ReadAsStringAsync();
-
-        var transactions = JsonSerializer.Deserialize<Response<IEnumerable<TransactionDetail>>>(content, serializerOptions);
-
-        return transactions ?? throw new NonSerializableResponseException(content);
-    }
-
-    public async Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id)
+    public async Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id, string? subAccount = null)
     {
         string url = BaseAPIUrl + "accounts/transaction";
         url += $"?id={id}";
         var request = SetupRequestObject(HttpMethod.Post, url);
+
+        if(subAccount != null)
+        {
+            var dataObject = new
+            {
+                subAccount
+            };
+            string json = JsonSerializer.Serialize(dataObject);
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        }
 
         var response = await _httpClient.SendAsync(request);
         var content = await response.Content.ReadAsStringAsync();
@@ -139,52 +126,20 @@ public partial class Chimoney
         }
     }
 
-    public async Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id, string subAccount)
-    {
-        string url = BaseAPIUrl + "accounts/transaction";
-        url += $"?id={id}";
-        var request = SetupRequestObject(HttpMethod.Post, url);
-
-        var json = JsonSerializer.Serialize(new
-        {
-            subAccount
-        });
-        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
-        var response = await _httpClient.SendAsync(request);
-        var content = await response.Content.ReadAsStringAsync();
-
-        var transaction = JsonSerializer.Deserialize<Response<TransactionDetail>>(content, serializerOptions);
-        return transaction ?? throw new NonSerializableResponseException(content);
-    }
-
-    public async Task<Response<TransactionDetail>> GetTransactionDetailByIssueId(string issueId)
-    {
-        string url = BaseAPIUrl + $"accounts/issue-id-transactions?issueID={issueId}";
-        var request = SetupRequestObject(HttpMethod.Post, url);
-
-        var json = JsonSerializer.Serialize(new
-        {
-            issueId
-        });
-        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await _httpClient.SendAsync(request);
-        var content = await response.Content.ReadAsStringAsync();
-        var transaction = JsonSerializer.Deserialize<Response<TransactionDetail>>(content, serializerOptions);
-        return transaction ?? throw new NonSerializableResponseException(content);
-    }
-
-    public async Task<Response<TransactionDetail>> GetTransactionDetailByIssueId(string issueId, string subAccount)
+    public async Task<Response<TransactionDetail>> GetTransactionDetailByIssueId(string issueId, string? subAccount = null)
     {
         string url = BaseAPIUrl + "accounts/issue-id-transactions";
         url += $"?issueID={issueId}";
         var request = SetupRequestObject(HttpMethod.Post, url);
 
-        var json = JsonSerializer.Serialize(new
+        if(subAccount != null)
         {
-            subAccount
-        });
-        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            var json = JsonSerializer.Serialize(new
+            {
+                subAccount
+            });
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        }
 
         var response = await _httpClient.SendAsync(request);
         var content = await response.Content.ReadAsStringAsync();
