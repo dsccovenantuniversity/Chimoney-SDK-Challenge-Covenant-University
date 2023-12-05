@@ -3,9 +3,9 @@
 /// <summary>
 /// Represents the status of a transaction
 /// </summary>
-public enum Status
+public class Status
 {
-    Failed,
-    Expired,
-    Fraud
+    public const string Failed = "failed";
+    public const string Expired = "expired";
+    public const string Fraud = "fraud";
 }

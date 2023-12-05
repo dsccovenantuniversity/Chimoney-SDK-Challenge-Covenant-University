@@ -1,4 +1,7 @@
-﻿using ChimoneyDotNet.Models;
+﻿using ChimoneyDotNet.Models.Account;
+using ChimoneyDotNet.Models.Info;
+using ChimoneyDotNet.Models.Payment;
+using ChimoneyDotNet.Models.Payout;
 using ChimoneyDotNet.Responses;
 
 namespace ChimoneyDotNet;
@@ -6,7 +9,7 @@ namespace ChimoneyDotNet;
 /// <summary>
 /// Interface for methods to access API endpoints
 /// </summary>
-public interface IChimoneyWrapperBase
+public interface IChimoneyBase
 {
     #region Account
 
@@ -148,13 +151,74 @@ public interface IChimoneyWrapperBase
     /// <param name="subAccount">Subaccount if any</param>
     /// <returns><see cref="PaymentResponse{T}"/> where T is <see cref="PaymentVerification"/></returns>
     /// 
-    Task<PaymentResponse<PaymentVerification>> Simulate(string issueId, Status status, string? subAccount = null);
-    //TODO add enum for status
+    Task<PaymentResponse<PaymentVerification>> Simulate(string issueId, string status, string? subAccount = null);
     #endregion
 
     #region Payout
 
-    Task<Response<>> PayoutAirtime(PayoutAirtime payoutAirtime);
+    /// <summary>
+    /// Payout airtime to a phone number
+    /// </summary>
+    /// <param name="airtimePayoutRequest"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> PayoutAirtime(PayoutRequest<AirtimePayout> airtimePayoutRequest);
+
+    /// <summary>
+    /// Payout to a bank in a supported country
+    /// </summary>
+    /// <param name="bankPayoutRequest"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> PayoutToBank(PayoutRequest<BankPayout> bankPayout);
+
+    /// <summary>
+    /// Payout Chimoney
+    /// </summary>
+    /// <param name="chimoneyPayoutRequest"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> PayoutChimoney(PayoutRequest<ChimoneyPayout> chimoneyPayout);
+
+    /// <summary>
+    /// Payout to a Chimoney Wallet
+    /// </summary>
+    /// <param name="chimoneyWalletPayoutRequest"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> PayoutToChimoneyWallet(PayoutRequest<ChimoneyWalletPayout> chimoneyWalletPayout);
+
+    /// <summary>
+    /// Payout to interledger wallet address
+    /// </summary>
+    /// <param name="interledgerWalletPayout"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> PayoutToInterledgerWallet(PayoutRequest<InterledgerWalletPayout> interledgerWalletPayout);
+
+    /// <summary>
+    /// Payout giftcards to an email
+    /// </summary>
+    /// <param name="giftcardPayout"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> PayoutGiftcards(PayoutRequest<GiftcardPayout> giftcardPayout);
+
+    /// <summary>
+    /// Payout mobile money (Momo)
+    /// </summary>
+    /// <param name="mobileMoneyPayout"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> PayoutMobileMoney(PayoutRequest<MobileMoneyPayout> mobileMoneyPayout);
+
+    /// <summary>
+    /// Check payout status
+    /// </summary>
+    /// <param name="chiRef">Chi reference</param>
+    /// <param name="subAccount">Subaccount if any</param>
+    /// <returns></returns>
+    Task<Response<ChimoneyResult>> CheckPayoutStatus(string chiRef, string? subAccount = null);
+
+    /// <summary>
+    /// Initiate a Chimoney transaction
+    /// </summary>
+    /// <param name="chimoneyTransaction"></param>
+    /// <returns></returns>
+    Task<Response<PayoutResult>> InitiateChimoneyTransaction(ChimoneyTransaction chimoneyTransaction);
 
     #endregion
 }

@@ -1,15 +1,17 @@
 ﻿
+using ChimoneyDotNet.Models.Payout;
+using ChimoneyDotNet.Responses;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ChimoneyDotNet;
 
-public partial class Chimoney : IChimoneyWrapperBase
+public partial class Chimoney : IChimoneyBase
 {
     /// <summary>
     /// Base Url for API
     /// </summary>
-    private readonly static string BaseAPIUrl = "https://api-v2-sandbox.chimoney.io/v0.2/";
+    private readonly static string _baseUrl = "https://api-v2-sandbox.chimoney.io/v0.2/";
 
     private static HttpClient _httpClient;
 
@@ -68,4 +70,5 @@ public partial class Chimoney : IChimoneyWrapperBase
         _httpClient.Dispose();
     }
 
+   
 }

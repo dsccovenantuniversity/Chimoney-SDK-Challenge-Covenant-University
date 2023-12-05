@@ -1,5 +1,4 @@
-﻿
-namespace ChimoneyDotNet.Models;
+﻿namespace ChimoneyDotNet.Models.Payment;
 
 public class PaymentInfo
 {
@@ -20,16 +19,9 @@ public class PaymentInfo
     public string PaymentRef { get; set; }
     public string PaymentLink { get; set; }
     public string Error { get; set; }
-    //TODO figure out that data field
-    public IEnumerable<Dictionary<string, string>> Data { get; set; }
+    //public IEnumerable<Dictionary<string, string>> Data { get; set; }
+    public PaymentData Data { get; set; }
 
-    //TODO: Add CryptoPayment
-    //public class CryptoPayment
-    //{
-    //    public Dictionary<string,string> Xrpl { get; set; }
-    //    public Ditcionary<string,string> Eth { get; set; }
-    //    public Dictionary<string,string> Bsc { get; set; }
 
-    //}
 
 }

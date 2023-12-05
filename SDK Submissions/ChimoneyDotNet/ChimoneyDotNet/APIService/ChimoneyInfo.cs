@@ -1,6 +1,6 @@
 ﻿
 using ChimoneyDotNet.Exceptions;
-using ChimoneyDotNet.Models;
+using ChimoneyDotNet.Models.Info;
 using ChimoneyDotNet.Responses;
 using System.Text;
 using System.Text.Json;
@@ -14,7 +14,7 @@ public partial class Chimoney
 {
     public async Task<Response<string[]>> GetSupportedAirtimeCountries()
     {
-        var url = BaseAPIUrl + "/info/airtime-countries";
+        var url = _baseUrl + "/info/airtime-countries";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
 
@@ -26,7 +26,7 @@ public partial class Chimoney
 
     public async Task<Response<BenefitsData>> GetAllAssets()
     {
-        var url = BaseAPIUrl + $"/info/assets";
+        var url = _baseUrl + $"/info/assets";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
 
@@ -38,7 +38,7 @@ public partial class Chimoney
 
     public async Task<Response<BenefitsData>> GetAllAssets(string countryCode)
     {
-        var url = BaseAPIUrl + $"/info/assets?countryCode={countryCode}";
+        var url = _baseUrl + $"/info/assets?countryCode={countryCode}";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
 
@@ -50,7 +50,7 @@ public partial class Chimoney
 
     public async Task<Response<ConversionToUSD>> ConvertLocalCurrencyToUSD(string originCurrency, decimal amountInOriginCurrency)
     {
-        var url = BaseAPIUrl + $"/info/local-amount-in-usd?originCurrency={originCurrency}" +
+        var url = _baseUrl + $"/info/local-amount-in-usd?originCurrency={originCurrency}" +
             $"&amountInOriginCurrency={amountInOriginCurrency}";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
@@ -63,7 +63,7 @@ public partial class Chimoney
 
     public async Task<Response<IEnumerable<BankBranch>>> GetBankBranches(string bankCode)
     {
-        var url = BaseAPIUrl + $"/info/bank-branches?bankCode={bankCode}";
+        var url = _baseUrl + $"/info/bank-branches?bankCode={bankCode}";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
 
@@ -75,7 +75,7 @@ public partial class Chimoney
 
     public async Task<Response<IEnumerable<Bank>>> GetSupportedBanks(string countryCode)
     {
-        var url = BaseAPIUrl + $"/info/country-banks?countryCode={countryCode}";
+        var url = _baseUrl + $"/info/country-banks?countryCode={countryCode}";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
 
@@ -87,7 +87,7 @@ public partial class Chimoney
 
     public async Task<Response<Dictionary<string, decimal>>> GetExchangeRates()
     {
-        var url = BaseAPIUrl + $"/info/exchange-rates";
+        var url = _baseUrl + $"/info/exchange-rates";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
 
@@ -99,7 +99,7 @@ public partial class Chimoney
 
     public async Task<Response<IEnumerable<MobileMoneyCode>>> GetSupportedMobileMoneyCodes()
     {
-        var url = BaseAPIUrl + $"/info/mobile-money-codes";
+        var url = _baseUrl + $"/info/mobile-money-codes";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
 
@@ -111,7 +111,7 @@ public partial class Chimoney
 
     public async Task<Response<USDToLocalConversion>> GetUSDAmountInLocal(string destinationCurrency, decimal amountInUSD)
     {
-        var url = BaseAPIUrl + $"/info/usd-amount-in-local?destinationCurrency={destinationCurrency}" +
+        var url = _baseUrl + $"/info/usd-amount-in-local?destinationCurrency={destinationCurrency}" +
             $"&amountInUSD={amountInUSD}";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
@@ -123,7 +123,7 @@ public partial class Chimoney
 
     public async Task<Response<IEnumerable<BankAccount>>> VerifyBankAccounts(IEnumerable<BankAccount> bankAccounts)
     {
-        var url = BaseAPIUrl + $"/info/verify-bank-account-number";
+        var url = _baseUrl + $"/info/verify-bank-account-number";
         var request = SetupRequestObject(HttpMethod.Post, url);
 
         //var options = new JsonSerializerOptions()

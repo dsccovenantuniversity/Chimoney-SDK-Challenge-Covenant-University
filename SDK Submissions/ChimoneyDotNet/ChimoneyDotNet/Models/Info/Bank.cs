@@ -1,4 +1,4 @@
-﻿namespace ChimoneyDotNet.Models;
+﻿namespace ChimoneyDotNet.Models.Info;
 
 public class Bank
 {

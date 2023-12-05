@@ -1,9 +1,11 @@
 using ChimoneyDotNet.Models;
+using ChimoneyDotNet.Models.Info;
+using ChimoneyDotNet.Models.Payment;
 
 namespace ChimoneyTests;
 public class IntegrationTests
 {
-    private readonly IChimoneyWrapperBase chimoneyWrapper = new
+    private readonly IChimoneyBase chimoneyWrapper = new
         Chimoney("d3cd6f0247c5f4f7b398def389138b132a05e6443884f56b2fae3ed21e4ea47c");
     private readonly string success = "success";
     private readonly string error = "error";

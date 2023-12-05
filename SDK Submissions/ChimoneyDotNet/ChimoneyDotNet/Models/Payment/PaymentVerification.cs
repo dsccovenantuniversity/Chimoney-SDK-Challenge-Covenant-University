@@ -1,5 +1,4 @@
-﻿
-namespace ChimoneyDotNet.Models;
+﻿namespace ChimoneyDotNet.Models.Payment;
 
 public class PaymentVerification
 {

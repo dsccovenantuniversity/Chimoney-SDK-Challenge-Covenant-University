@@ -1,6 +1,6 @@
 ﻿
 using ChimoneyDotNet.Exceptions;
-using ChimoneyDotNet.Models;
+using ChimoneyDotNet.Models.Payment;
 using ChimoneyDotNet.Responses;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +11,7 @@ public partial class Chimoney
 {
     public async Task<PaymentResponse<PaymentInfo>> InitiatePaymentRequest(PaymentRequest paymentRequest)
     {
-        var url = $"{BaseAPIUrl}/payment/initiate";
+        var url = $"{_baseUrl}/payment/initiate";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(paymentRequest, serializerOptions),
             Encoding.UTF8, "application/json");
@@ -26,7 +26,7 @@ public partial class Chimoney
 
     public async Task<PaymentResponse<PaymentVerification>> VerifyPayment(string transactionId, string? subAccount = null)
     {
-        var url = $"{BaseAPIUrl}/payment/verify";
+        var url = $"{_baseUrl}/payment/verify";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(new
         {
@@ -54,9 +54,9 @@ public partial class Chimoney
         }
     }
 
-    public async Task<PaymentResponse<PaymentVerification>> Simulate(string issueID, Status status, string? subAccount = null)
+    public async Task<PaymentResponse<PaymentVerification>> Simulate(string issueID, string status, string? subAccount = null)
     {
-        var url = $"{BaseAPIUrl}/payment/simulate";
+        var url = $"{_baseUrl}/payment/simulate";
         var request = SetupRequestObject(HttpMethod.Post, url);
         var json = JsonSerializer.Serialize(new
         {

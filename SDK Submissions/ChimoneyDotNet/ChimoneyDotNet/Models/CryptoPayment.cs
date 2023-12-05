@@ -1,10 +1,11 @@
-﻿
-namespace ChimoneyDotNet.Models;
+﻿namespace ChimoneyDotNet.Models;
 
 public class CryptoPayment
 {
-    public Dictionary<string, string> Xrpl { get; set; }
-    public Dictionary<string, string> Eth { get; set; }
-    public Dictionary<string, string> Bsc { get; set; }
-
+    /// <summary>
+    /// Wallet address
+    /// </summary>
+    public string Address { get; set; }
+    public string Issuer { get; set; }
+    public string Currency { get; set; }
 }

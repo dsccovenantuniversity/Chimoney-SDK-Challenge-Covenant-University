@@ -1,5 +1,4 @@
-﻿
-namespace ChimoneyDotNet.Models;
+﻿namespace ChimoneyDotNet.Models.Account;
 
 /// <summary>
 /// Base transaction model
