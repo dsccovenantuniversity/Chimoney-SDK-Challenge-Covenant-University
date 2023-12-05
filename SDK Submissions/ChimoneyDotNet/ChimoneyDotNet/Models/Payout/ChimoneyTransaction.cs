@@ -20,6 +20,7 @@ public class ChimoneyTransaction
     /// <summary>
     /// Generate a Xumm transaction sign link
     /// </summary>
+    [JsonPropertyName("enableXUMMPayment")]
     public bool EnableXUMMPayment { get; set; }
 
     /// <summary>

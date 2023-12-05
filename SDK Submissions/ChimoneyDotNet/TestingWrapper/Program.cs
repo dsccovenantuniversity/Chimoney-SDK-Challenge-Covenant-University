@@ -1,11 +1,23 @@
 ﻿using ChimoneyDotNet;
-using ChimoneyDotNet.Models;
+using ChimoneyDotNet.Models.Payout;
 
-var wrapperBase = new Chimoney("d3cd6f0247c5f4f7b398def389138b132a05e6443884f56b2fae3ed21e4ea47c");
+var wrapperBase = new Chimoney("88cd4465f56b3132c385303ca1fd4950c6896eee96304f4dd46513aebff5bcde");
 
-var response = await wrapperBase.Simulate("random_id", Status.Failed);
+//var response = await wrapperBase.Simulate("random_id", Status.Failed);
 
+var payoutRequest = new PayoutRequest<ChimoneyWalletPayout>()
+{
+    Data = new List<ChimoneyWalletPayout>()
+            {
+                new()
+                {
+                    Receiver = "dimfofofofoof",
+                    ValueInUSD = 10
+                }
+            }
+};
 
-Console.WriteLine(response.Status);
-Console.WriteLine(response.Error);
-Console.WriteLine(response.Message);
+var result = await wrapperBase.PayoutToChimoneyWallet(payoutRequest);
+//Console.WriteLine(response.Status);
+//Console.WriteLine(response.Error);
+//Console.WriteLine(response.Message);

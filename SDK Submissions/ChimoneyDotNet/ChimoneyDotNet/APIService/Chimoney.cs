@@ -11,6 +11,7 @@ public partial class Chimoney : IChimoneyBase
     /// <summary>
     /// Base Url for API
     /// </summary>
+    // TODO change to prod link
     private readonly static string _baseUrl = "https://api-v2-sandbox.chimoney.io/v0.2/";
 
     private static HttpClient _httpClient;

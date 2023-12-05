@@ -161,49 +161,49 @@ public interface IChimoneyBase
     /// </summary>
     /// <param name="airtimePayoutRequest"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> PayoutAirtime(PayoutRequest<AirtimePayout> airtimePayoutRequest);
+    Task<Response<PayoutResult<Payout>>> PayoutAirtime(PayoutRequest<AirtimePayout> airtimePayoutRequest);
 
     /// <summary>
     /// Payout to a bank in a supported country
     /// </summary>
     /// <param name="bankPayoutRequest"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> PayoutToBank(PayoutRequest<BankPayout> bankPayout);
+    Task<Response<PayoutResult<Payout>>> PayoutToBank(PayoutRequest<BankPayout> bankPayout);
 
     /// <summary>
     /// Payout Chimoney
     /// </summary>
     /// <param name="chimoneyPayoutRequest"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> PayoutChimoney(PayoutRequest<ChimoneyPayout> chimoneyPayout);
+    Task<Response<PayoutResult<PayoutsDict>>> PayoutChimoney(PayoutRequest<ChimoneyPayout> chimoneyPayout);
 
     /// <summary>
     /// Payout to a Chimoney Wallet
     /// </summary>
     /// <param name="chimoneyWalletPayoutRequest"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> PayoutToChimoneyWallet(PayoutRequest<ChimoneyWalletPayout> chimoneyWalletPayout);
+    Task<Response<PayoutResult<Payout>>> PayoutToChimoneyWallet(PayoutRequest<ChimoneyWalletPayout> chimoneyWalletPayout);
 
     /// <summary>
     /// Payout to interledger wallet address
     /// </summary>
     /// <param name="interledgerWalletPayout"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> PayoutToInterledgerWallet(PayoutRequest<InterledgerWalletPayout> interledgerWalletPayout);
+    Task<Response<PayoutResult<Payout>>> PayoutToInterledgerWallet(PayoutRequest<InterledgerWalletPayout> interledgerWalletPayout);
 
     /// <summary>
     /// Payout giftcards to an email
     /// </summary>
     /// <param name="giftcardPayout"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> PayoutGiftcards(PayoutRequest<GiftcardPayout> giftcardPayout);
+    Task<Response<PayoutResult<Payout>>> PayoutGiftcards(PayoutRequest<GiftcardPayout> giftcardPayout);
 
     /// <summary>
     /// Payout mobile money (Momo)
     /// </summary>
     /// <param name="mobileMoneyPayout"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> PayoutMobileMoney(PayoutRequest<MobileMoneyPayout> mobileMoneyPayout);
+    Task<Response<PayoutResult<List<Payout>>>> PayoutMobileMoney(PayoutRequest<MobileMoneyPayout> mobileMoneyPayout);
 
     /// <summary>
     /// Check payout status
@@ -218,7 +218,7 @@ public interface IChimoneyBase
     /// </summary>
     /// <param name="chimoneyTransaction"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult>> InitiateChimoneyTransaction(ChimoneyTransaction chimoneyTransaction);
+    Task<Response<PayoutResult<Payout>>> InitiateChimoneyTransaction(ChimoneyTransaction chimoneyTransaction);
 
     #endregion
 }

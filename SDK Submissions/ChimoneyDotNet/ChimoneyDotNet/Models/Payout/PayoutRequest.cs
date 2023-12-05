@@ -10,7 +10,7 @@ public class PayoutRequest<T>
     /// <summary>
     /// Subaccount if any
     /// </summary>
-    public string SubAccount { get; set; }
+    public string? SubAccount { get; set; } = null;
     public bool TurnOffNotification { get; set; }
 
     /// <summary>
