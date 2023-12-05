@@ -129,7 +129,7 @@ public interface IChimoneyWrapperBase
     /// Initiate a payment request
     /// </summary>
     /// <param name="paymentRequest">The Payment Request Object</param>
-    /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentInfo"/></returns>
+    /// <returns><see cref="PaymentResponse{T}"/> where T is <see cref="PaymentInfo"/></returns>
     Task<PaymentResponse<PaymentInfo>> InitiatePaymentRequest(PaymentRequest paymentRequest);
 
     /// <summary>
@@ -137,7 +137,7 @@ public interface IChimoneyWrapperBase
     /// </summary>
     /// <param name="transactionId">Transaction Id (issueID)</param>
     /// <param name="subAccount">Subaccount if any</param>
-    /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentVerification"/></returns>
+    /// <returns><see cref="PaymentResponse{T}"/> where T is <see cref="PaymentVerification"/></returns>
     Task<PaymentResponse<PaymentVerification>> VerifyPayment(string transactionId, string? subAccount = null);
 
     /// <summary>
@@ -146,7 +146,7 @@ public interface IChimoneyWrapperBase
     /// <param name="issueId">The transaction Id (IssueID)</param>
     /// <param name="status">Status to change to</param>
     /// <param name="subAccount">Subaccount if any</param>
-    /// <returns><see cref="Response{T}"/> where T is <see cref="PaymentVerification"/></returns>
+    /// <returns><see cref="PaymentResponse{T}"/> where T is <see cref="PaymentVerification"/></returns>
     /// 
     Task<PaymentResponse<PaymentVerification>> Simulate(string issueId, Status status, string? subAccount = null);
     //TODO add enum for status
@@ -154,6 +154,7 @@ public interface IChimoneyWrapperBase
 
     #region Payout
 
+    Task<Response<>> PayoutAirtime(PayoutAirtime payoutAirtime);
 
     #endregion
 }

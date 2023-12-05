@@ -81,6 +81,12 @@ public partial class Chimoney
         return transactions ?? throw new NonSerializableResponseException(content);
     }
 
+    //HACK weird behaviour here
+    // the api can return a response like
+    // "status" : "success"
+    // "data" : "error message"
+    // causing deserialization to fail
+    //Easy fix is including try catch on all such methods. *sigh*
     public async Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id, string? subAccount = null)
     {
         string url = BaseAPIUrl + "accounts/transaction";
@@ -100,12 +106,6 @@ public partial class Chimoney
         var response = await _httpClient.SendAsync(request);
         var content = await response.Content.ReadAsStringAsync();
 
-        //HACK weird behaviour here
-        // the api can return a response like
-        // "status" : "success"
-        // "data" : "error message"
-        // causing deserialization to fail
-        //Easy fix is including try catch on all such methods. *sigh*
         try
         {
             var transaction = JsonSerializer.Deserialize<Response<TransactionDetail>>(content, serializerOptions);
