@@ -3,6 +3,7 @@ using ChimoneyDotNet.Models.Info;
 using ChimoneyDotNet.Models.Payment;
 using ChimoneyDotNet.Models.Payout;
 using ChimoneyDotNet.Models.Redeem;
+using ChimoneyDotNet.Models.SubAccount;
 using ChimoneyDotNet.Responses;
 
 namespace ChimoneyDotNet;
@@ -169,7 +170,7 @@ public interface IChimoneyBase
     /// </summary>
     /// <param name="bankPayoutRequest"></param>
     /// <returns></returns>
-    Task<Response<PayoutResult<Payout>>> PayoutToBank(PayoutRequest<BankPayout> bankPayout);
+    Task<Response<PayoutResult<List<Payout>>>> PayoutToBank(PayoutRequest<BankPayout> bankPayout);
 
     /// <summary>
     /// Payout Chimoney
@@ -240,6 +241,30 @@ public interface IChimoneyBase
     Task<Response<object>> RedeemGiftcard(RedeemGiftcardRequest redeemRequest);
 
     Task<Response<object>> RedeemMobileMoney(RedeemMobileMoneyRequest redeemRequest);
+
+    #endregion
+
+    #region Subaccount
+
+    Task<Response<SubAccount>> CreateSubAccount(CreateSubAccountRequest subAccount);
+
+    Task<Response<object>> UpdateSubAccount(UpdateSubAccount updateSubAccount);
+
+    Task<Response<object>> DeleteSubAccount(string subAccountId);
+
+    /// <summary>
+    /// Get details of am existing subaccount
+    /// </summary>
+    /// <param name="subAccountId"></param>
+    /// <returns></returns>
+    Task<Response<SubAccount>> GetSubAccount(string subAccountId);
+
+
+    /// <summary>
+    /// Get all subaccounts associated with user.
+    /// </summary>
+    /// <returns></returns>
+    Task<Response<IEnumerable<SubAccount>>> GetAllSubAccounts();
 
     #endregion
 }

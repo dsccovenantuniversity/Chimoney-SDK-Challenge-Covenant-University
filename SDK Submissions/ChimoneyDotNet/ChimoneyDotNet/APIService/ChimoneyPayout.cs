@@ -27,7 +27,7 @@ public partial class Chimoney
         return result ?? throw new NonSerializableResponseException($"Error deserializing response\n {responseString}");
     }
 
-    public async Task<Response<PayoutResult<Payout>>> PayoutToBank(PayoutRequest<BankPayout> bankPayout)
+    public async Task<Response<PayoutResult<List<Payout>>>> PayoutToBank(PayoutRequest<BankPayout> bankPayout)
     {
         var url = $"{_baseUrl}/payouts/bank";
         var request = SetupRequestObject(HttpMethod.Post, url);
@@ -41,7 +41,7 @@ public partial class Chimoney
                        Encoding.UTF8, "application/json");
         var response = await _httpClient.SendAsync(request);
         var responseString = await response.Content.ReadAsStringAsync();
-        var result = JsonSerializer.Deserialize<Response<PayoutResult<Payout>>>(responseString, serializerOptions);
+        var result = JsonSerializer.Deserialize<Response<PayoutResult<List<Payout>>>>(responseString, serializerOptions);
         return result ?? throw new NonSerializableResponseException($"Error deserializing response\n {responseString}");
     }
 
