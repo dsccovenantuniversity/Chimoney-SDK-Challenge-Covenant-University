@@ -3,6 +3,7 @@ using ChimoneyDotNet.Models.Account;
 using ChimoneyDotNet.Models.Info;
 using ChimoneyDotNet.Models.Payment;
 using ChimoneyDotNet.Models.Payout;
+using ChimoneyDotNet.Models.Redeem;
 
 namespace ChimoneyTests;
 public class IntegrationTests
@@ -451,8 +452,8 @@ public class IntegrationTests
     {
         var result = await chimoney.InitiateChimoneyTransaction(new ChimoneyTransaction()
         {
-          RedirectUrl = "https://test.com",
-          Chimoneys = new List<ChimoneyPayment>()
+            RedirectUrl = "https://test.com",
+            Chimoneys = new List<ChimoneyPayment>()
           {
               new()
               {
@@ -462,9 +463,9 @@ public class IntegrationTests
                   Twitter = "@test"
               }
           },
-          EnableXUMMPayment = false,
-          EnableInterledgerPayment = false,
-          CryptoPayment = new List<CryptoPayment>()
+            EnableXUMMPayment = false,
+            EnableInterledgerPayment = false,
+            CryptoPayment = new List<CryptoPayment>()
           {
               new()
               {
@@ -477,5 +478,103 @@ public class IntegrationTests
 
         Assert.Equal(success, result.Status);
     }
+    #endregion
+
+    #region Redeem
+
+    [Fact]
+    public async Task RedeemAirtime_Returns_ValidResponse()
+    {
+        var result = await chimoney.RedeemAirtimecard(new RedeemAirtimeRequest()
+        {
+            ChiRef = "1234567890",
+            CountryToSend = "Nigeria",
+            PhoneNumber = "+2348123456789",
+        });
+
+        Assert.Equal(error, result.Status);
+        Assert.Equal("no transaction found for chiRef 1234567890", result.Error);
+    }
+
+    [Fact]
+    public async Task RedeemAny_Returns_ValidResponse()
+    {
+        var result = await chimoney.RedeemAny(new RedeemAnyRequest()
+        {
+            ChiRef = "1234567890",
+            RedeemData = new()
+            {
+                {"id", "1234567890" },
+                {"value", "1234567890" }
+            },
+        });
+
+        Assert.Equal(error, result.Status);
+        Assert.Equal("no transaction found for chiRef 1234567890", result.Error);
+    }
+
+    [Fact]
+    public async Task RedeemChimoney_Returns_ValidResponse()
+    {
+        var result = await chimoney.RedeemChimoney(new RedeemChimoneyRequest()
+        {
+            ChiRef = "1234567890",
+            TurnOffNotification = false,
+            Chimoneys = new()
+            {
+                new ()
+                {
+                    {"id", "1234567890" },
+                    {"value", "1234567890" } 
+                }
+            }
+        });
+
+        Assert.Equal(error, result.Status);
+        Assert.Equal("no transaction found for chiRef 1234567890", result.Error);
+    }
+
+    [Fact]
+    public async Task RedeemGiftcardReturns_ValidResponse()
+    {
+        var result = await chimoney.RedeemGiftcard(new RedeemGiftcardRequest()
+        {
+            ChiRef = "1234567890",
+            Meta = new()
+            {
+                {"id",13232 }
+            },
+            RedeemOptions = new()
+            {
+                {"id", "1234567890" },
+                {"value", "1234567890" }
+            },
+        });
+
+        Assert.Equal(error, result.Status);
+        Assert.Equal("no transaction found for chiRef 1234567890", result.Error);
+    }
+
+    [Fact]
+    public async Task RedeemMobileMoneyReturns_ValidResponse()
+    {
+        var result = await chimoney.RedeemMobileMoney(new RedeemMobileMoneyRequest()
+        {
+            ChiRef = "1234567890",
+            Meta = new()
+            {
+                {"id",13232 }
+            },
+            RedeemOptions = new()
+            {
+                {"id", "1234567890" },
+                {"value", "1234567890" }
+            },
+        });
+
+        Assert.Equal(error, result.Status);
+        Assert.Equal("no transaction found for chiRef 1234567890", result.Error);
+    }
+
     #endregion
 }

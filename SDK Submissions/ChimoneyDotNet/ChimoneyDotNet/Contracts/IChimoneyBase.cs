@@ -2,6 +2,7 @@
 using ChimoneyDotNet.Models.Info;
 using ChimoneyDotNet.Models.Payment;
 using ChimoneyDotNet.Models.Payout;
+using ChimoneyDotNet.Models.Redeem;
 using ChimoneyDotNet.Responses;
 
 namespace ChimoneyDotNet;
@@ -222,5 +223,23 @@ public interface IChimoneyBase
 
     #endregion
 
+    #region Redeem
+    //HACK will change from object to actual type as soon 
+    //as the API is updated to return the correct type
+    /// <summary>
+    /// Redeem airtime
+    /// </summary>
+    /// <param name="redeemRequest"></param>
+    /// <returns></returns>
+    Task<Response<object>> RedeemAirtimecard(RedeemAirtimeRequest redeemRequest);
 
+    Task<Response<object>> RedeemAny(RedeemAnyRequest redeemRequest);
+
+    Task<Response<object>> RedeemChimoney(RedeemChimoneyRequest redeemRequest);
+
+    Task<Response<object>> RedeemGiftcard(RedeemGiftcardRequest redeemRequest);
+
+    Task<Response<object>> RedeemMobileMoney(RedeemMobileMoneyRequest redeemRequest);
+
+    #endregion
 }
