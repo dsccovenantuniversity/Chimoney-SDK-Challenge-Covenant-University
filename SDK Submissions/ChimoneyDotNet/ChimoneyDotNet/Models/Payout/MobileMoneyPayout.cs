@@ -26,6 +26,6 @@ public class MobileMoneyPayout
     /// <summary>
     /// Mobile Money Code
     /// </summary>
-    public string MomoCode { get; set;}
+    public string MomoCode { get; set; }
 }
 

@@ -12,14 +12,14 @@ public partial class Chimoney
     {
         var url = $"{_baseUrl}/payouts/airtime";
         var request = SetupRequestObject(HttpMethod.Post, url);
-        var data = new 
+        var data = new
         {
             subAccount = airtimePayoutRequest.SubAccount,
             turnOffNotification = airtimePayoutRequest.TurnOffNotification,
             airtimes = airtimePayoutRequest.Data
         };
 
-        request.Content = new StringContent(JsonSerializer.Serialize(data, serializerOptions), 
+        request.Content = new StringContent(JsonSerializer.Serialize(data, serializerOptions),
             Encoding.UTF8, "application/json");
         var response = await _httpClient.SendAsync(request);
         var responseString = await response.Content.ReadAsStringAsync();
@@ -55,7 +55,7 @@ public partial class Chimoney
             turnOffNotification = chimoneyPayout.TurnOffNotification,
             chimoneys = chimoneyPayout.Data
         };
-        request.Content = new StringContent(JsonSerializer.Serialize(data,serializerOptions),
+        request.Content = new StringContent(JsonSerializer.Serialize(data, serializerOptions),
             Encoding.UTF8, "application/json");
         var response = await _httpClient.SendAsync(request);
         var responseString = await response.Content.ReadAsStringAsync();
@@ -157,7 +157,7 @@ public partial class Chimoney
     {
         var url = $"{_baseUrl}/payouts/initiate-chimoney";
         var request = SetupRequestObject(HttpMethod.Post, url);
-        
+
         request.Content = new StringContent(JsonSerializer.Serialize(chimoneyTransaction, serializerOptions),
                              Encoding.UTF8, "application/json");
         var response = await _httpClient.SendAsync(request);

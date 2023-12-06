@@ -22,7 +22,7 @@ public class Payout
     public decimal Fee { get; set; }
     public string Status { get; set; }
     public string Reference { get; set; }
-    public IEnumerable<Dictionary<string,string>> Meta { get; set; }
+    public IEnumerable<Dictionary<string, string>> Meta { get; set; }
     public string Narration { get; set; }
     [JsonPropertyName("complete_message")]
     public string CompleteMessage { get; set; }

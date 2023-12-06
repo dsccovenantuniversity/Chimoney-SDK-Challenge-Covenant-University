@@ -280,7 +280,7 @@ public class IntegrationTests
                     PhoneNumber = "+2348123456789",
                     ValueInUSD = 10
                 }
-            }   
+            }
         };
 
         var result = await chimoney.PayoutAirtime(payoutRequest);
@@ -444,6 +444,38 @@ public class IntegrationTests
         var result = await chimoney.CheckPayoutStatus("841aa5df-df90-4269-83ac-65bf457a9a5f");
         Assert.Equal(success, result.Status);
         Assert.IsType<ChimoneyResult>(result.Data);
+    }
+
+    [Fact]
+    public async Task InitiateChimoneyTransaction_Returns_Success()
+    {
+        var result = await chimoney.InitiateChimoneyTransaction(new ChimoneyTransaction()
+        {
+          RedirectUrl = "https://test.com",
+          Chimoneys = new List<ChimoneyPayment>()
+          {
+              new()
+              {
+                  Email = "test@gmail.com",
+                  Phone = "+16471112222",
+                  ValueInUSD = 10,
+                  Twitter = "@test"
+              }
+          },
+          EnableXUMMPayment = false,
+          EnableInterledgerPayment = false,
+          CryptoPayment = new List<CryptoPayment>()
+          {
+              new()
+              {
+                  Address = "0x1234567890",
+                  Issuer = "issuer",
+                  Currency = "Currency",
+              }
+          }
+        });
+
+        Assert.Equal(success, result.Status);
     }
     #endregion
 }

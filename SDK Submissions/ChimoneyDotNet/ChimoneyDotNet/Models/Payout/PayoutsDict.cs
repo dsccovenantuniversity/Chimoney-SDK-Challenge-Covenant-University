@@ -7,5 +7,5 @@ namespace ChimoneyDotNet.Models.Payout;
 public class PayoutsDict
 {
     public string IssueID { get; set; }
-    public Dictionary<string,Payout> PayoutList { get; set; }
+    public Dictionary<string, Payout> PayoutList { get; set; }
 }

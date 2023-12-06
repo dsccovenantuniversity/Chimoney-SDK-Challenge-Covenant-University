@@ -15,17 +15,17 @@ public class PaymentData
     public string InitiatorKey { get; set; }
     public string Phone { get; set; }
     public string ChiRef { get; set; }
-    public Dictionary<string,string> Integration { get; set; }
+    public Dictionary<string, string> Integration { get; set; }
     public string IssueDate { get; set; }
     public string Email { get; set; }
-    public Dictionary<string,string> RedeemData { get; set; }
+    public Dictionary<string, string> RedeemData { get; set; }
     public string InitiatedBy { get; set; }
     public string Issuer { get; set; }
-    public Dictionary<string,string> Meta { get; set; }
+    public Dictionary<string, string> Meta { get; set; }
     public string UpdatedDate { get; set; }
     public string PaymentDate { get; set; }
     public string[] EnabledToRedeem { get; set; }
     public string Twitter { get; set; }
     public string RedeemLink { get; set; }
-    public Dictionary<string,string> Message { get; set; }
+    public Dictionary<string, string> Message { get; set; }
 }
