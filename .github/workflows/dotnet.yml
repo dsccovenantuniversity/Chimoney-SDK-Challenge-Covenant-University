@@ -27,5 +27,5 @@ jobs:
       - name: Release Build
         run: dotnet build --configuration Release --no-restore
       - name: Publish To Nuget 
-        working-directory: ./ChimoneyDotNet/bin/Release
+        working-directory: /SDK Submissions/ChimoneyDotNet/ChimoneyDotNet/bin/Release
         run: nuget push  **\*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
