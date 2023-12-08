@@ -1,4 +1,4 @@
-﻿namespace ChimoneyDotNet.Models.SubAccount;
+﻿namespace ChimoneyDotNet.Models;
 
 public class CreateSubAccountRequest
 {

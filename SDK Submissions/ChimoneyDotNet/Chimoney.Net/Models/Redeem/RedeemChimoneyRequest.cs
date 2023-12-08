@@ -1,5 +1,5 @@
 ﻿
-namespace ChimoneyDotNet.Models.Redeem;
+namespace ChimoneyDotNet.Models;
 
 public class RedeemChimoneyRequest : RedeemRequest
 {

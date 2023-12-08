@@ -1,7 +1,6 @@
-﻿
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace ChimoneyDotNet.Models.Info;
+namespace ChimoneyDotNet.Models;
 
 /// <summary>
 /// Bank account for verfication

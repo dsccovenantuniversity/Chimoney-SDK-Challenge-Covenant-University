@@ -1,4 +1,4 @@
-﻿namespace ChimoneyDotNet.Models.Payout;
+﻿namespace ChimoneyDotNet.Models;
 
 /// <summary>
 /// Represents response to a payout request

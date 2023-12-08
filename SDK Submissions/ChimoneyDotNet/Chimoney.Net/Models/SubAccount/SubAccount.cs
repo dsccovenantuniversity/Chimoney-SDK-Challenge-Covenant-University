@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ChimoneyDotNet.Models.SubAccount;
+namespace ChimoneyDotNet.Models;
 
 public class SubAccount
 {

@@ -1,10 +1,4 @@
 ﻿using ChimoneyDotNet.Models;
-using ChimoneyDotNet.Models.Account;
-using ChimoneyDotNet.Models.Info;
-using ChimoneyDotNet.Models.Payment;
-using ChimoneyDotNet.Models.Payout;
-using ChimoneyDotNet.Models.Redeem;
-using ChimoneyDotNet.Models.SubAccount;
 using ChimoneyDotNet.Responses;
 
 namespace ChimoneyDotNet;

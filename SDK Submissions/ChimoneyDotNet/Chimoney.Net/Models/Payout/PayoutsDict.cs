@@ -1,5 +1,5 @@
 ﻿
-namespace ChimoneyDotNet.Models.Payout;
+namespace ChimoneyDotNet.Models;
 
 /// <summary>
 /// Represents a json object with payouts and an issueId field

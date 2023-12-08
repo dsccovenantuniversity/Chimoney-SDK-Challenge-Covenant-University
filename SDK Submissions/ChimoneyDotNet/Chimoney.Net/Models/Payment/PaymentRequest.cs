@@ -1,7 +1,7 @@
 ﻿
 using System.Text.Json.Serialization;
 
-namespace ChimoneyDotNet.Models.Payment;
+namespace ChimoneyDotNet.Models;
 
 public class PaymentRequest
 {

@@ -1,6 +1,5 @@
 ﻿using ChimoneyDotNet;
 using ChimoneyDotNet.Models;
-using ChimoneyDotNet.Models.Payout;
 
 var wrapperBase = new Chimoney(Environment.GetEnvironmentVariable("CHIMONEY_API_KEY")!);
 

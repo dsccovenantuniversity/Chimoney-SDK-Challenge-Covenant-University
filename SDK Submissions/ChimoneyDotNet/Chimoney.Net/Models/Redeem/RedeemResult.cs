@@ -1,8 +1,7 @@
 ﻿
-namespace ChimoneyDotNet.Models.Redeem
+namespace ChimoneyDotNet.Models;
+
+public class RedeemResult
 {
-    public class RedeemResult
-    {
-        //HACK don't know what this is
-    }
+    //HACK don't know what this is
 }

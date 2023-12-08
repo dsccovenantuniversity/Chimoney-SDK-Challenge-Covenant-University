@@ -1,4 +1,4 @@
-﻿namespace ChimoneyDotNet.Models.Account;
+﻿namespace ChimoneyDotNet.Models;
 /// <summary>
 /// Transfer Detail Model
 /// </summary>

@@ -1,9 +1,9 @@
-﻿using ChimoneyDotNet.Models.Account;
+﻿using ChimoneyDotNet.Models;
 
 namespace ChimonyDotNet.Test;
 public class AccountTests
 {
-    private readonly Chimoney chimoney = new Chimoney(Environment.GetEnvironmentVariable("CHIMONEY_API_KEY") ?? 
+    private readonly Chimoney chimoney = new(Environment.GetEnvironmentVariable("CHIMONEY_API_KEY") ?? 
         "3b890bee5f1ef80b399542a6ec62bb8748708f81f198768be11e37055ae01d55");
 
     private readonly string success = "success";

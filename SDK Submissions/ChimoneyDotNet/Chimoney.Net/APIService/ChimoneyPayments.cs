@@ -1,6 +1,6 @@
 ﻿
 using ChimoneyDotNet.Exceptions;
-using ChimoneyDotNet.Models.Payment;
+using ChimoneyDotNet.Models;
 using ChimoneyDotNet.Responses;
 using System.Text;
 using System.Text.Json;

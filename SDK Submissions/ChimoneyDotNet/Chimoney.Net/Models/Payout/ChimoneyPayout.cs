@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ChimoneyDotNet.Models.Payout;
+namespace ChimoneyDotNet.Models;
 
 /// <summary>
 /// Represents a Chimoney payout

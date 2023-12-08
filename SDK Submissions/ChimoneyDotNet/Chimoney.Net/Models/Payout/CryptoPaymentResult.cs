@@ -1,7 +1,7 @@
 ﻿
 using System.Text.Json.Serialization;
 
-namespace ChimoneyDotNet.Models.Payout;
+namespace ChimoneyDotNet.Models;
 
 public class CryptoPaymentResult
 {

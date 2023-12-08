@@ -1,4 +1,4 @@
-﻿namespace ChimoneyDotNet.Models.Payout;
+﻿namespace ChimoneyDotNet.Models;
 
 public class AirtimePayout
 {

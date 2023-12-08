@@ -1,4 +1,4 @@
-﻿namespace ChimoneyDotNet.Models.Info;
+﻿namespace ChimoneyDotNet.Models;
 
 public class BenefitsData
 {

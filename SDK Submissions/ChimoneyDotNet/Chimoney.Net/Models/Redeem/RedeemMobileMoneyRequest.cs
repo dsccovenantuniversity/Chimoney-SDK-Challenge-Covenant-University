@@ -1,4 +1,4 @@
-﻿namespace ChimoneyDotNet.Models.Redeem;
+﻿namespace ChimoneyDotNet.Models;
 
 public class RedeemMobileMoneyRequest : RedeemRequest
 {
