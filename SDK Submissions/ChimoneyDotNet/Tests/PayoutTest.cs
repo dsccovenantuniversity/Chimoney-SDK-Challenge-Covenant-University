@@ -1,6 +1,4 @@
-﻿using ChimoneyDotNet.Models;
-using ChimoneyDotNet.Models;
-
+﻿
 namespace ChimonyDotNet.Test;
 
 public class PayoutTest
