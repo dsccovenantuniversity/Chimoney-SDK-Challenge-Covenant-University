@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChimoneyDotNet\ChimoneyDotNet.csproj" />
+    <ProjectReference Include="..\Chimoney.Net\Chimoney.NET.csproj" />
   </ItemGroup>
 
 </Project>

@@ -50,7 +50,6 @@ public partial class Chimoney : IChimoneyBase
                 "environment variable \"CHIMONEY_API_KEY\" ");
         }
         _httpClient = new HttpClient();
-
     }
 
     HttpRequestMessage SetupRequestObject(HttpMethod method, string url)
