@@ -28,4 +28,4 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Publish To Nuget 
         working-directory: ./SDK Submissions/ChimoneyDotNet/ChimoneyDotNet/bin/Release
-        run: nuget push  ChimoneyDotNet.1.0.0.nupkg ${{secrets.NUGET_API_KEY}} -Source https://api.nuget.org/v3/index.json
+        run: nuget push  ChimoneyDotNet.1.0.1.nupkg ${{secrets.NUGET_API_KEY}} -Source https://api.nuget.org/v3/index.json
