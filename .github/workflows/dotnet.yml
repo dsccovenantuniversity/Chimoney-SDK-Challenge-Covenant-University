@@ -6,6 +6,8 @@ name: .NET
 on:
   push:
     branches: [ "SDK/NET" ]
+env:
+  CHIMONEY_API_KEY: ${{secrets.CHIMONEY_API_KEY}}
 jobs:
     build:
       runs-on: ubuntu-latest
