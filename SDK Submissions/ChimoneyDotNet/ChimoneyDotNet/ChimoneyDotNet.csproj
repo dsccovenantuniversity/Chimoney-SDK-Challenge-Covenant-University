@@ -4,6 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>ChimoneyDotNet</Title>
+    <Authors>$Gearhead041</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/gearhead041/Chimoney-SDK-Challenge-Covenant-University/tree/SDK/NET</RepositoryUrl>
+    <PackageTags>payment;chimoney;</PackageTags>
   </PropertyGroup>
 
 </Project>

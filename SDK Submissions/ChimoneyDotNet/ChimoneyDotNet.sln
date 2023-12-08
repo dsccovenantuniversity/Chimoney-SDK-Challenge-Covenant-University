@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChimonyDotNet.IntegrationTe
 		{0888249A-91E9-4B82-83CF-FB428E20A717} = {0888249A-91E9-4B82-83CF-FB428E20A717}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChimoneyDotNet", "ChimoneyDotNet\ChimoneyDotNet.csproj", "{0888249A-91E9-4B82-83CF-FB428E20A717}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChimoneyDotNet", "ChimoneyDotNet\ChimoneyDotNet.csproj", "{0888249A-91E9-4B82-83CF-FB428E20A717}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
