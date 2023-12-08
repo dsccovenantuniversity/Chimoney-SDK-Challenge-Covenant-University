@@ -1,4 +1,5 @@
-﻿using ChimoneyDotNet.Models.Account;
+﻿using ChimoneyDotNet.Models;
+using ChimoneyDotNet.Models.Account;
 using ChimoneyDotNet.Models.Info;
 using ChimoneyDotNet.Models.Payment;
 using ChimoneyDotNet.Models.Payout;
@@ -265,6 +266,38 @@ public interface IChimoneyBase
     /// </summary>
     /// <returns></returns>
     Task<Response<IEnumerable<SubAccount>>> GetAllSubAccounts();
+
+    #endregion
+
+    #region Wallet
+
+    /// <summary>
+    /// List associated wallets
+    /// </summary>
+    /// <param name="subAccount">SubAccout if any</param>
+    /// <returns></returns>
+    Task<Response<IEnumerable<Wallet>>> ListAssociatedWallets(string? subAccount = null);
+
+    /// <summary>
+    /// Get single wallet details   
+    /// </summary>
+    /// <param name="walletID">Id of Wallet</param>
+    /// <param name="subAccount"></param>
+    /// <returns></returns>
+    Task<Response<Wallet>> GetSingleWallet(string walletID, string? subAccount = null);
+
+
+    /// <summary>
+    /// Transfer between wallets
+    /// </summary>
+    /// <param name="receiverId">Valid Chimoney User or Organization ID</param>
+    /// <param name="valueInUSD"></param>
+    /// <param name="wallet">Wallet type. Leave blank except you fully understand the different wallet types ["chi", "momo", "airtime"]</param>
+    /// <param name="subAccount"></param>
+    /// <returns></returns>
+    Task<Response<object>> TransferBetweenWallets(string receiverId, decimal valueInUSD, string? wallet = null, string? subAccount = null);
+    //TODO change response type to actual type when API is updated
+
 
     #endregion
 }

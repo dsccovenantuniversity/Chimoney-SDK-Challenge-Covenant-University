@@ -35,6 +35,7 @@ public class InfoTests
     [Fact]
     public async Task Convert_Local_To_USD_Returns_Sucess()
     {
+        await Task.Delay(1000);
         var result = await chimoney.ConvertLocalCurrencyToUSD("NGN", 300m);
         Assert.NotNull(result);
         Assert.Equal(success, result.Status);
@@ -46,6 +47,7 @@ public class InfoTests
     [Fact]
     public async Task Get_Bank_Branches_Returns_Success()
     {
+        await Task.Delay(1000);
         var result = await chimoney.GetBankBranches("280");
         Assert.NotNull(result);
         Assert.Equal(success, result.Status);
@@ -55,6 +57,7 @@ public class InfoTests
     [Fact]
     public async Task Get_Supported_Bank_Returns_Success()
     {
+        await Task.Delay(1000);
         var result = await chimoney.GetSupportedBanks("NG");
         Assert.NotNull(result);
         Assert.Equal(success, result.Status);
@@ -65,6 +68,7 @@ public class InfoTests
     [Fact]
     public async Task Get_Exchange_Rates_Returns_Success()
     {
+        await Task.Delay(1000);
         var result = await chimoney.GetExchangeRates();
         Assert.NotNull(result);
         Assert.Equal(success, result.Status);
@@ -74,6 +78,7 @@ public class InfoTests
     [Fact]
     public async Task Get_MobileMoneyCodes_Returns_Success()
     {
+        await Task.Delay(1000);
         var result = await chimoney.GetSupportedMobileMoneyCodes();
         Assert.NotNull(result);
         Assert.Equal(success, result.Status);
@@ -84,6 +89,7 @@ public class InfoTests
     [Fact]
     public async Task Get_USD_To_Local_Returns_Success()
     {
+        await Task.Delay(1000);
         var result = await chimoney.GetUSDAmountInLocal("NGN", 300m);
         Assert.NotNull(result);
         Assert.Equal(success, result.Status);
@@ -94,14 +100,15 @@ public class InfoTests
     [Fact]
     public async Task Verify_BankAccounts_Returns_Success()
     {
+        await Task.Delay(1000);
         var accounts = new List<BankAccount>()
-    {
-        new()
         {
-            CountryCode = "NG",
-            Account_Bank = "044",
-            Account_Number = "0690000032"
-        }
+            new()
+            {
+                CountryCode = "NG",
+                Account_Bank = "044",
+                Account_Number = "0690000032"
+            }
         };
 
 

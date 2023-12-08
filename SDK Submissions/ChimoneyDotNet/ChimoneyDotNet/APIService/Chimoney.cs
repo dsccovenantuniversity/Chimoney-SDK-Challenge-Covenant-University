@@ -54,7 +54,6 @@ public partial class Chimoney : IChimoneyBase
 
     }
 
-
     HttpRequestMessage SetupRequestObject(HttpMethod method, string url)
     {
         var request = new HttpRequestMessage(method, url);
@@ -68,6 +67,5 @@ public partial class Chimoney : IChimoneyBase
     {
         _httpClient.Dispose();
     }
-
 
 }
