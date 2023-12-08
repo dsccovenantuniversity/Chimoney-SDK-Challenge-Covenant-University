@@ -11,7 +11,7 @@ public partial class Chimoney
 {
     public async Task<Response<IEnumerable<Wallet>>> ListAssociatedWallets(string? subAccount = null)
     {
-        var url = $"{_baseUrl}/wallets/list";
+        var url = $"{BaseUrl}/wallets/list";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(new { subAccount },serializerOptions), 
             Encoding.UTF8, "application/json");
@@ -23,7 +23,7 @@ public partial class Chimoney
 
     public async Task<Response<Wallet>> GetSingleWallet(string walletID, string? subAccount = null)
     {
-        var url = $"{_baseUrl}/wallets/lookup";
+        var url = $"{BaseUrl}/wallets/lookup";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(new {walletID, subAccount },serializerOptions),
             Encoding.UTF8, "application/json");
@@ -35,7 +35,7 @@ public partial class Chimoney
 
     public async Task<Response<object>> TransferBetweenWallets(string receiverId, decimal valueInUSD, string? wallet = null, string? subAccount = null)
     {
-        var url = $"{_baseUrl}/wallets/transfer";
+        var url = $"{BaseUrl}/wallets/transfer";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(new { 
             subAccount, 

@@ -10,7 +10,7 @@ public partial class Chimoney
 {
     public async Task<Response<SubAccount>> CreateSubAccount(CreateSubAccountRequest subAccount)
     {
-        var url  = $"{_baseUrl}/sub-account/create";
+        var url  = $"{BaseUrl}/sub-account/create";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(subAccount, serializerOptions),
                        Encoding.UTF8, "application/json");
@@ -24,7 +24,7 @@ public partial class Chimoney
 
     public async Task<Response<object>> UpdateSubAccount(UpdateSubAccount updateSubAccount)
     {
-        var url = $"{_baseUrl}/sub-account/update";
+        var url = $"{BaseUrl}/sub-account/update";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(updateSubAccount, serializerOptions),
                        Encoding.UTF8, "application/json");
@@ -37,7 +37,7 @@ public partial class Chimoney
 
     public async Task<Response<object>> DeleteSubAccount(string subAccountId)
     {
-        var url = $"{_baseUrl}/sub-account/delete?id={subAccountId}";
+        var url = $"{BaseUrl}/sub-account/delete?id={subAccountId}";
         var request = SetupRequestObject(HttpMethod.Delete, url);
 
         var response = await _httpClient.SendAsync(request);
@@ -49,7 +49,7 @@ public partial class Chimoney
 
     public async Task<Response<SubAccount>> GetSubAccount(string subAccountId)
     {
-        var url = $"{_baseUrl}/sub-account/get?id={subAccountId}";
+        var url = $"{BaseUrl}/sub-account/get?id={subAccountId}";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
         var response = await _httpClient.SendAsync(request);
@@ -61,7 +61,7 @@ public partial class Chimoney
 
     public async Task<Response<IEnumerable<SubAccount>>> GetAllSubAccounts()
     {
-        var url = $"{_baseUrl}/sub-account/list";
+        var url = $"{BaseUrl}/sub-account/list";
         var request = SetupRequestObject(HttpMethod.Get, url);
 
         var response = await _httpClient.SendAsync(request);

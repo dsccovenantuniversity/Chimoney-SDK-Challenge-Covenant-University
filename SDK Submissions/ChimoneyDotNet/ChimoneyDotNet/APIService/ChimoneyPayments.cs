@@ -11,7 +11,7 @@ public partial class Chimoney
 {
     public async Task<PaymentResponse<PaymentInfo>> InitiatePaymentRequest(PaymentRequest paymentRequest)
     {
-        var url = $"{_baseUrl}/payment/initiate";
+        var url = $"{BaseUrl}/payment/initiate";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(paymentRequest, serializerOptions),
             Encoding.UTF8, "application/json");
@@ -26,7 +26,7 @@ public partial class Chimoney
 
     public async Task<PaymentResponse<PaymentVerification>> VerifyPayment(string transactionId, string? subAccount = null)
     {
-        var url = $"{_baseUrl}/payment/verify";
+        var url = $"{BaseUrl}/payment/verify";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(new
         {
@@ -56,7 +56,7 @@ public partial class Chimoney
 
     public async Task<PaymentResponse<PaymentVerification>> Simulate(string issueID, string status, string? subAccount = null)
     {
-        var url = $"{_baseUrl}/payment/simulate";
+        var url = $"{BaseUrl}/payment/simulate";
         var request = SetupRequestObject(HttpMethod.Post, url);
         var json = JsonSerializer.Serialize(new
         {

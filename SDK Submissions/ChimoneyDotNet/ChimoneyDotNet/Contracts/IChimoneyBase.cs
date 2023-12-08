@@ -14,6 +14,7 @@ namespace ChimoneyDotNet;
 /// </summary>
 public interface IChimoneyBase
 {
+    static string BaseUrl { get; set; }
     #region Account
 
     /// <summary>

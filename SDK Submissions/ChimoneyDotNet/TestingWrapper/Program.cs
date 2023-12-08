@@ -32,7 +32,7 @@ var request = new ChimoneyTransaction()
           }
 };
 
-var result = await wrapperBase.InitiateChimoneyTransaction(request);
+//var result = await wrapperBase.InitiateChimoneyTransaction(request);
 //Console.WriteLine(response.Status);
 //Console.WriteLine(response.Error);
 //Console.WriteLine(response.Message);

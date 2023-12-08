@@ -11,7 +11,7 @@ public partial class Chimoney
 
     public async Task<Response<TransferDetail>> AccountTransfer(AccountTransfer accountTransfer)
     {
-        string url = _baseUrl + "/accounts/transfer";
+        string url = BaseUrl + "/accounts/transfer";
         var request = SetupRequestObject(HttpMethod.Post, url);
         string json;
         if (accountTransfer.SubAccount == null)
@@ -46,7 +46,7 @@ public partial class Chimoney
 
     public async Task<Response<Transaction>> DeleteTransfer(string chiRef, string? subAccount = null)
     {
-        string url = _baseUrl + "/accounts/delete-unpaid-transaction";
+        string url = BaseUrl + "/accounts/delete-unpaid-transaction";
         url += subAccount == null ? $"?chiRef={chiRef}" : $"?chiRef={chiRef}&subAccount={subAccount}";
         var request = SetupRequestObject(HttpMethod.Delete, url);
 
@@ -61,7 +61,7 @@ public partial class Chimoney
 
     public async Task<Response<IEnumerable<TransactionDetail>>> GetAllTransactionsByAccount(string? subAccount = null)
     {
-        string url = _baseUrl + "accounts/transactions";
+        string url = BaseUrl + "accounts/transactions";
         var request = SetupRequestObject(HttpMethod.Post, url);
         if (subAccount != null)
         {
@@ -89,7 +89,7 @@ public partial class Chimoney
     //Easy fix is including try catch on all such methods. *sigh*
     public async Task<Response<TransactionDetail>> GetSingleTransactionDetail(string id, string? subAccount = null)
     {
-        string url = _baseUrl + "accounts/transaction";
+        string url = BaseUrl + "accounts/transaction";
         url += $"?id={id}";
         var request = SetupRequestObject(HttpMethod.Post, url);
 
@@ -129,7 +129,7 @@ public partial class Chimoney
 
     public async Task<Response<TransactionDetail>> GetTransactionDetailByIssueId(string issueId, string? subAccount = null)
     {
-        string url = _baseUrl + "accounts/issue-id-transactions";
+        string url = BaseUrl + "accounts/issue-id-transactions";
         url += $"?issueID={issueId}";
         var request = SetupRequestObject(HttpMethod.Post, url);
 

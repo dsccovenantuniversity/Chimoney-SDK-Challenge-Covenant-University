@@ -10,7 +10,7 @@ public partial class Chimoney
 {
     public async Task<Response<object>> RedeemAirtimecard(RedeemAirtimeRequest redeemRequest)
     {
-        var url = $"{_baseUrl}/redeem/airtime";
+        var url = $"{BaseUrl}/redeem/airtime";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(redeemRequest, serializerOptions),
                        Encoding.UTF8, "application/json");
@@ -22,7 +22,7 @@ public partial class Chimoney
 
     public async Task<Response<object>> RedeemAny(RedeemAnyRequest redeemRequest)
     {
-        var url = $"{_baseUrl}/redeem/any";
+        var url = $"{BaseUrl}/redeem/any";
         var request = SetupRequestObject(HttpMethod.Post,url);
         request.Content = new StringContent(JsonSerializer.Serialize(redeemRequest, serializerOptions),
                        Encoding.UTF8, "application/json");
@@ -34,7 +34,7 @@ public partial class Chimoney
 
     public async Task<Response<object>> RedeemChimoney(RedeemChimoneyRequest redeemRequest)
     {
-        var url = $"{_baseUrl}/redeem/any";
+        var url = $"{BaseUrl}/redeem/any";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(redeemRequest, serializerOptions),
                        Encoding.UTF8, "application/json");
@@ -46,7 +46,7 @@ public partial class Chimoney
 
     public async Task<Response<object>> RedeemGiftcard(RedeemGiftcardRequest redeemRequest)
     {
-        var url = $"{_baseUrl}/redeem/any";
+        var url = $"{BaseUrl}/redeem/any";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(redeemRequest, serializerOptions),
                        Encoding.UTF8, "application/json");
@@ -58,7 +58,7 @@ public partial class Chimoney
 
     public async Task<Response<object>> RedeemMobileMoney(RedeemMobileMoneyRequest redeemRequest)
     {
-        var url = $"{_baseUrl}/redeem/any";
+        var url = $"{BaseUrl}/redeem/any";
         var request = SetupRequestObject(HttpMethod.Post, url);
         request.Content = new StringContent(JsonSerializer.Serialize(redeemRequest, serializerOptions),
                        Encoding.UTF8, "application/json");
