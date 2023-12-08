@@ -1,4 +1,4 @@
-﻿using ChimoneyDotNet.Models.Redeem;
+﻿using ChimoneyDotNet.Models;
 
 namespace ChimonyDotNet.Test;
 

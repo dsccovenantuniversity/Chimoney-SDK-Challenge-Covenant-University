@@ -1,4 +1,4 @@
-﻿using ChimoneyDotNet.Models.Info;
+﻿using ChimoneyDotNet.Models;
 namespace ChimonyDotNet.Test;
 
 public class InfoTests

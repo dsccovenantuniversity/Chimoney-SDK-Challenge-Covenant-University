@@ -1,4 +1,4 @@
-﻿using ChimoneyDotNet.Models.SubAccount;
+﻿using ChimoneyDotNet.Models;
 
 namespace ChimonyDotNet.Test;
 

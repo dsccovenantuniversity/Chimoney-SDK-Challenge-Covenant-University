@@ -1,4 +1,4 @@
-﻿using ChimoneyDotNet.Models.Payment;
+﻿using ChimoneyDotNet.Models;
 using ChimoneyDotNet.Models;
 
 namespace ChimonyDotNet.Test;
