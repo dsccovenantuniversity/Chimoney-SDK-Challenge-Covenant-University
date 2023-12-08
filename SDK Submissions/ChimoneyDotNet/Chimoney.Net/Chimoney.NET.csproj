@@ -12,6 +12,7 @@
     <PackageTags>payment;chimoney;</PackageTags>
     <Version>1.0.1</Version>
     <PackageId>ChimoneyDotNet</PackageId>
+    <RootNamespace>ChimoneyDotNet</RootNamespace>
   </PropertyGroup>
 
 </Project>
