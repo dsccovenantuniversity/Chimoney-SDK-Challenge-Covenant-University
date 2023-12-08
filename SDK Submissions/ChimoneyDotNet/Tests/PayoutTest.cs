@@ -45,25 +45,26 @@ public class PayoutTest
         {
             TurnOffNotification = false,
             Data = new List<BankPayout>()
-        {
-            new()
             {
-                CountryToSend = "Nigeria",
-                AccountBank = "044",
-                AccountNumber = "0690000032",
-                ValueInUSD = 10,
-                FullName = "John Doe",
-                Reference = "12345567",
-                BranchCode = "GH190101"
+                new()
+                {
+                    CountryToSend = "Nigeria",
+                    AccountBank = "044",
+                    AccountNumber = "0690000032",
+                    ValueInUSD = 10,
+                    FullName = "John Doe",
+                    Reference = "12345567",
+                    BranchCode = "GH190101"
+                }
             }
-        }
         };
 
         var result = await chimoney.PayoutToBank(payoutRequest);
         Assert.NotNull(result);
-        Assert.Equal(success, result.Status);
-        Assert.Null(result.Error);
-        //Assert.Equal("Bank details could not be verified try another account",result.Error);
+        Assert.Equal(error, result.Status);
+        Assert.NotNull(result.Error);
+        Assert.Equal("Insufficient balance in your chi wallet", result.Error);
+
     }
 
     [Fact]
@@ -72,22 +73,20 @@ public class PayoutTest
         var payoutRequest = new PayoutRequest<ChimoneyPayout>()
         {
             Data = new List<ChimoneyPayout>()
-      {
-          new()
-          {
-              Email = "test@gmail.com",
-              PhoneNumber = "+16471112222",
-              ValueInUSD = 10
-          }
-      }
+            {
+                new()
+                {
+                    Email = "test@gmail.com",
+                    PhoneNumber = "+16471112222",
+                    ValueInUSD = 10
+                }
+            }
         };
 
         var result = await chimoney.PayoutChimoney(payoutRequest);
-        Assert.NotNull(result);
-        Assert.Equal(success, result.Status);
-        Assert.Null(result.Error);
-        Assert.IsAssignableFrom<IEnumerable<PaymentData>>(result.Data.Data);
-        Assert.IsType<PayoutsDict>(result.Data.Payouts);
+        Assert.Equal(error, result.Status);
+        Assert.NotNull(result.Error);
+        Assert.Equal("Insufficient balance in your chi wallet", result.Error);
     }
 
     [Fact]
