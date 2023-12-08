@@ -4,7 +4,7 @@ namespace ChimonyDotNet.Test;
 public class AccountTests
 {
     private readonly IChimoneyBase chimoney = new
-        Chimoney("88cd4465f56b3132c385303ca1fd4950c6896eee96304f4dd46513aebff5bcde");
+        Chimoney(Environment.GetEnvironmentVariable("CHIMONEY_API_KEY")!);
     //TODO : Replace with your API key from ENV or config file
     private readonly string success = "success";
     private readonly string error = "error";

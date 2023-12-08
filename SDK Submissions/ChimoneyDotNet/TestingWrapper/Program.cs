@@ -2,7 +2,7 @@
 using ChimoneyDotNet.Models;
 using ChimoneyDotNet.Models.Payout;
 
-var wrapperBase = new Chimoney("88cd4465f56b3132c385303ca1fd4950c6896eee96304f4dd46513aebff5bcde");
+var wrapperBase = new Chimoney(Environment.GetEnvironmentVariable("CHIMONEY_API_KEY")!);
 
 //var response = await wrapperBase.Simulate("random_id", Status.Failed);
 
