@@ -1,12 +1,14 @@
 ![Tests](https://github.com/gearhead041/Chimoney-SDK-Challenge-Covenant-University/actions/workflows/dotnet.yml/badge.svg)
 
+![Nuget](https://img.shields.io/nuget/dt/ChimoneyDotNet)
+
 This is the Chimoney SDK for .NET. It is a library that allows you to easily integrate Chimoney into your .NET applications.
 
-## Intsallation Guide
+## Intallation Guide
 
 In your .NET project, run the following command in the terminal:
 ```
-dotnet add package ChimoneyDotNet --version 1.0.2
+dotnet add package ChimoneyDotNet
 ```
 
 ## Usage Examples

@@ -9,11 +9,19 @@
     <Authors>$Gearhead041</Authors>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/gearhead041/Chimoney-SDK-Challenge-Covenant-University/tree/SDK/NET</RepositoryUrl>
-    <PackageTags>payment;chimoney;</PackageTags>
-    <Version>1.0.2</Version>
+    <PackageTags>payment;chimoney;apiwrapper;</PackageTags>
+    <Version>1.0.3</Version>
     <PackageId>ChimoneyDotNet</PackageId>
     <RootNamespace>ChimoneyDotNet</RootNamespace>
     <Description>Chimoney SDK for .NET. It is a library that allows you to easily integrate Chimoney into your .NET applications.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
