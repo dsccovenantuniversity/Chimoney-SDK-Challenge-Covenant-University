@@ -37,7 +37,7 @@ var transfer = chimoney.AccountTransfer(account);
 
 
 - [x] Proper Coding Standards and Conventions
-- [ ] Proper Skeleton Structure
+- [x] Proper Skeleton Structure
 - [x] Readme Doc (Demo,Installation Guide, Usage Examples)
 - [x] Error Handling
 - [x] Tests
