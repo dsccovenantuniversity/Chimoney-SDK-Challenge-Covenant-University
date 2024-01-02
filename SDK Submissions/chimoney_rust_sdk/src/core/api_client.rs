@@ -8,7 +8,6 @@ pub struct APIClient {
     accept: String,
 }
 
-// impl APIClient
 impl APIClient {
     pub fn new() -> APIClient {
         APIClient {
