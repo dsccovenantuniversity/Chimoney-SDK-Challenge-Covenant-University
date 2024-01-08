@@ -2,24 +2,33 @@ use reqwest::Client;
 
 #[derive()]
 pub struct APIClient {
-    production_base_url: String,
-    sandbox_base_url: String,
     content_type: String,
     accept: String,
+    base_url: String,
 }
 
 impl APIClient {
-    pub fn new() -> APIClient {
+    pub fn new(use_sandbox: bool) -> APIClient {
+        let production_base_url = "https://api.chimoney.io".to_string();
+        let sandbox_base_url = "https://api-v2-sandbox.chimoney.io".to_string();
+        let content_type = "application/json".to_string();
+        let accept = "application/json".to_string();
+
+        let base_url = if use_sandbox {
+            sandbox_base_url
+        } else {
+            production_base_url
+        };
+
         APIClient {
-            production_base_url: "https://api.chimoney.io".to_string(),
-            sandbox_base_url: "https://api-v2-sandbox.chimoney.io".to_string(),
-            content_type: "application/json".to_string(),
-            accept: "application/json".to_string(),
+            base_url,
+            content_type,
+            accept,
         }
     }
 
     pub async fn get(&self, path: &str) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.production_base_url, path);
+        let url = format!("{}{}", self.base_url, path);
         let client = Client::new();
         let res = client
             .get(&url)
@@ -31,7 +40,7 @@ impl APIClient {
     }
 
     pub async fn post(&self, path: &str, body: &str) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.production_base_url, path);
+        let url = format!("{}{}", self.base_url, path);
         let client = Client::new();
         let res = client
             .post(&url)
@@ -44,7 +53,7 @@ impl APIClient {
     }
 
     pub async fn put(&self, path: &str, body: &str) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.production_base_url, path);
+        let url = format!("{}{}", self.base_url, path);
         let client = Client::new();
         let res = client
             .put(&url)
@@ -57,7 +66,7 @@ impl APIClient {
     }
 
     pub async fn delete(&self, path: &str) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.production_base_url, path);
+        let url = format!("{}{}", self.base_url, path);
         let client = Client::new();
         let res = client
             .delete(&url)
@@ -68,71 +77,13 @@ impl APIClient {
         Ok(res.text().await?)
     }
 
-    pub async fn get_sandbox(&self, path: &str) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.sandbox_base_url, path);
-        let client = Client::new();
-        let res = client
-            .get(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    pub async fn post_sandbox(
-        &self,
-        path: &str,
-        body: &str,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.sandbox_base_url, path);
-        let client = Client::new();
-        let res = client
-            .post(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .body(body.to_string())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    pub async fn put_sandbox(
-        &self,
-        path: &str,
-        body: &str,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.sandbox_base_url, path);
-        let client = Client::new();
-        let res = client
-            .put(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .body(body.to_string())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    pub async fn delete_sandbox(&self, path: &str) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.sandbox_base_url, path);
-        let client = Client::new();
-        let res = client
-            .delete(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    // Methods for handling authentication
+    // Methods for handling authentication w
     pub async fn get_auth(
         &self,
         path: &str,
         token: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.production_base_url, path);
+        let url = format!("{}{}", self.base_url, path);
         let client = Client::new();
         let res = client
             .get(&url)
@@ -150,7 +101,7 @@ impl APIClient {
         body: &str,
         token: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}", self.production_base_url, path);
+        let url = format!("{}{}", self.base_url, path);
         let client = Client::new();
         let res = client
             .post(&url)
@@ -169,7 +120,7 @@ impl APIClient {
         path: &str,
         params: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.production_base_url, path, params);
+        let url = format!("{}{}.await?{}", self.base_url, path, params);
         let client = Client::new();
         let res = client
             .get(&url)
@@ -186,7 +137,7 @@ impl APIClient {
         params: &str,
         body: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.production_base_url, path, params);
+        let url = format!("{}{}.await?{}", self.base_url, path, params);
         let client = Client::new();
         let res = client
             .post(&url)
@@ -204,7 +155,7 @@ impl APIClient {
         params: &str,
         body: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.production_base_url, path, params);
+        let url = format!("{}{}.await?{}", self.base_url, path, params);
         let client = Client::new();
         let res = client
             .put(&url)
@@ -221,75 +172,7 @@ impl APIClient {
         path: &str,
         params: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.production_base_url, path, params);
-        let client = Client::new();
-        let res = client
-            .delete(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    pub async fn get_sandbox_with_params(
-        &self,
-        path: &str,
-        params: &str,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.sandbox_base_url, path, params);
-        let client = Client::new();
-        let res = client
-            .get(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    pub async fn post_sandbox_with_params(
-        &self,
-        path: &str,
-        params: &str,
-        body: &str,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.sandbox_base_url, path, params);
-        let client = Client::new();
-        let res = client
-            .post(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .body(body.to_string())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    pub async fn put_sandbox_with_params(
-        &self,
-        path: &str,
-        params: &str,
-        body: &str,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.sandbox_base_url, path, params);
-        let client = Client::new();
-        let res = client
-            .put(&url)
-            .header("Content-Type", self.content_type.clone())
-            .header("Accept", self.accept.clone())
-            .body(body.to_string())
-            .send()
-            .await?;
-        Ok(res.text().await?)
-    }
-
-    pub async fn delete_sandbox_with_params(
-        &self,
-        path: &str,
-        params: &str,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let url = format!("{}{}.await?{}", self.sandbox_base_url, path, params);
+        let url = format!("{}{}.await?{}", self.base_url, path, params);
         let client = Client::new();
         let res = client
             .delete(&url)
@@ -323,34 +206,6 @@ impl APIClient {
             return Err(error_message.to_string().into());
         } else {
             return Err(error_message.to_string().into());
-        }
-    }
-
-    pub async fn handle_error_with_code(
-        &self,
-        error: String,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let error_json: serde_json::Value = serde_json::from_str(&error)?;
-        let error_code = error_json["code"].as_u64().unwrap();
-        let error_message = error_json["message"].as_str().unwrap();
-        if error_code == 400 {
-            Err(error_message.to_string().into())
-        } else {
-            Err(error_message.to_string().into())
-        }
-    }
-
-    pub async fn handle_error_with_code_and_message(
-        &self,
-        error: String,
-    ) -> Result<String, Box<dyn std::error::Error>> {
-        let error_json: serde_json::Value = serde_json::from_str(&error)?;
-        let error_code = error_json["code"].as_u64().unwrap();
-        let error_message = error_json["message"].as_str().unwrap();
-        if error_code == 400 {
-            Err(error_message.to_string().into())
-        } else {
-            Err(error_message.to_string().into())
         }
     }
 }
