@@ -5,9 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import java.util.Iterator;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 
 class Base {
 
@@ -32,10 +30,8 @@ class Base {
 	 * return client.send(request, HttpResponse.BodyHandlers.ofString());
 	 * }
 	 */
-	Iterator<JsonNode> parseJSONData(HttpResponse<String> response) throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode rootNode = objectMapper.readTree(response.body());
 
-		return rootNode.path("data").elements();
+	JSONObject parseJSONData(HttpResponse<String> response) {
+		return new JSONObject(response.body());
 	}
 }
