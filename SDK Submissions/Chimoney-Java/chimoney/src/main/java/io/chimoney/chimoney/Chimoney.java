@@ -6,8 +6,8 @@ import io.github.cdimascio.dotenv.Dotenv;
  * Chimoney
  */
 public class Chimoney {
-	private final String PRODUCTION_BASE_URL = "https://api.chimoney.io/";
-	private final String SANDBOX_BASE_URL = "https://api-v2-sandbox.chimoney.io/";
+	private final String PRODUCTION_BASE_URL = "https://api.chimoney.io/v0.2/";
+	private final String SANDBOX_BASE_URL = "https://api-v2-sandbox.chimoney.io/v0.2/";
 
 	private String API_KEY;
 	private String baseURL;
@@ -40,7 +40,7 @@ public class Chimoney {
 		return this.baseURL;
 	}
 
-	public String getAPIKey() {
+	String getAPIKey() {
 		return this.API_KEY;
 	}
 }
