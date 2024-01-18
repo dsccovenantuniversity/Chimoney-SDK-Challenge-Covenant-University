@@ -5,7 +5,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 class Base {
@@ -31,6 +30,13 @@ class Base {
 				.header("Content-Type", "application/json")
 				.POST(bodyPublisher).build();
 
+		return client.send(request, HttpResponse.BodyHandlers.ofString());
+	}
+
+	HttpResponse<String> handleDELETERequest(String path) throws Exception {
+		HttpRequest request = HttpRequest.newBuilder(URI.create(chimoney.getBaseURL() + path))
+				.header("X-API-KEY", chimoney.getAPIKey()).header("accept", "application/json").DELETE()
+				.build();
 		return client.send(request, HttpResponse.BodyHandlers.ofString());
 	}
 

@@ -80,6 +80,26 @@ public class Info extends Base {
 		return jo.getJSONArray("data").toList();
 	}
 
+	public List<Object> verifyBankAccountNumber(String countryCode, String bankCode, String accountNumber)
+			throws Exception {
+		JSONObject paramsJson = new JSONObject();
+		JSONArray ja = new JSONArray();
+
+		JSONObject jo = new JSONObject();
+
+		jo.put("countryCode", countryCode);
+		jo.put("account_bank", bankCode);
+		jo.put("account_number", accountNumber);
+
+		ja.put(jo);
+		paramsJson.put("verifyAccountNumbers", ja);
+
+		HttpResponse<String> response = handlePOSTRequest("info/verify-bank-account-number", paramsJson);
+		JSONObject jObj = parseJSONData(response);
+
+		return jObj.getJSONArray("data").toList();
+	}
+
 	public List<Object> verifyBankAccountNumbers(String countryCode, String bankCode, String[] accountNumbers)
 			throws Exception {
 		JSONObject paramsJson = new JSONObject();
