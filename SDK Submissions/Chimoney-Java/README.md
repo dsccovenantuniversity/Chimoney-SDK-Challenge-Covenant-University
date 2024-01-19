@@ -62,7 +62,7 @@ import io.chimoney.chimoney.Chimoney;
 // initialise without API key (recommended)
 Chimoney chimoney = new Chimoney();
 
-// initialise without API key (recommended)
+// initialise without API key
 String API_KEY = "your_api_key";
 Chimoney chimoney = new Chimoney(API_KEY);
 ```
