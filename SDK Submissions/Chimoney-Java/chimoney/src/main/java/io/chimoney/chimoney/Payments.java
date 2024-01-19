@@ -115,7 +115,7 @@ public class Payments extends Base {
 		return jo.getJSONObject("data").toMap();
 	}
 
-	public Map<String, Object> simulatePayment(String issueID, Payments.Status status) throws Exception {
+	public Map<String, Object> simulatePayment(String issueID, Status status) throws Exception {
 		JSONObject paramsJson = new JSONObject();
 		Map<String, Object> ret;
 
@@ -134,7 +134,7 @@ public class Payments extends Base {
 		return ret;
 	}
 
-	public Map<String, Object> simulatePayment(String issueID, Payments.Status status, String subAccount)
+	public Map<String, Object> simulatePayment(String issueID, Status status, String subAccount)
 			throws Exception {
 		JSONObject paramsJson = new JSONObject();
 		Map<String, Object> ret;

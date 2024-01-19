@@ -100,44 +100,22 @@ public class Info extends Base {
 		return jObj.getJSONArray("data").toList();
 	}
 
-	public List<Object> verifyBankAccountNumbers(String countryCode, String bankCode, String[] accountNumbers)
-			throws Exception {
-		JSONObject paramsJson = new JSONObject();
-		JSONArray ja = new JSONArray();
+	public List<Object> verifyBankAccountNumbers(Map<String, String[]> map) throws Exception {
 
-		for (String acctNum : accountNumbers) {
-			JSONObject jo = new JSONObject();
-
-			jo.put("countryCode", countryCode);
-			jo.put("account_bank", bankCode);
-			jo.put("account_number", acctNum);
-
-			ja.put(jo);
-		}
-		paramsJson.put("verifyAccountNumbers", ja);
-
-		HttpResponse<String> response = handlePOSTRequest("info/verify-bank-account-number", paramsJson);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONArray("data").toList();
-	}
-
-	public List<Object> verifyBankAccountNumbers(String[] countryCode, String[] bankCode, String[] accountNumbers)
-			throws Exception {
-
-		if ((countryCode.length != bankCode.length) && (countryCode.length != accountNumbers.length)) {
+		if ((map.get("countryCode").length != map.get("bankCode").length)
+				&& (map.get("countryCode").length != map.get("accountNumber").length)) {
 			throw new IllegalArgumentException("arrays should be of the same size");
 		}
 
 		JSONObject paramsJson = new JSONObject();
 		JSONArray ja = new JSONArray();
 
-		for (int i = 0; i < countryCode.length; i++) {
+		for (int i = 0; i < map.get("countryCode").length; i++) {
 			JSONObject jo = new JSONObject();
 
-			jo.put("countryCode", countryCode[i]);
-			jo.put("account_bank", bankCode[i]);
-			jo.put("account_number", accountNumbers[i]);
+			jo.put("countryCode", map.get("countryCode")[i]);
+			jo.put("account_bank", map.get("bankCode")[i]);
+			jo.put("account_number", map.get("accountNumber")[i]);
 
 			ja.put(jo);
 		}
