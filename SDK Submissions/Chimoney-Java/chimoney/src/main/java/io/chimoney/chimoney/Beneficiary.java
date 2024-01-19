@@ -13,7 +13,7 @@ public class Beneficiary extends Base {
 	public Map<String, Object> createBeneficiary(String ownerID, Map<String, String> beneficiaryData) throws Exception {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("owner", ownerID);
-		paramsJson.put("beneficiaryData", beneficiaryData);
+		paramsJson.put("beneficiaryData", new JSONObject(beneficiaryData));
 
 		HttpResponse<String> response = handlePOSTRequest("beneficiary/create", paramsJson);
 		JSONObject jo = parseJSONData(response);

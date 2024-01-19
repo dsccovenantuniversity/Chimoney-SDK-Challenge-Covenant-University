@@ -45,7 +45,7 @@ public class Payments extends Base {
 		paramsJson.put("payerEmail", payerEmail);
 		paramsJson.put("valueInUSD", valueInUSD);
 		paramsJson.put("subAccount", subAccount);
-		paramsJson.put("meta", meta);
+		paramsJson.put("meta", new JSONObject(meta));
 
 		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
 		JSONObject jo = parseJSONData(response);
@@ -86,7 +86,7 @@ public class Payments extends Base {
 		paramsJson.put("currency", currency);
 		paramsJson.put("amount", amount);
 		paramsJson.put("subAccount", subAccount);
-		paramsJson.put("meta", meta);
+		paramsJson.put("meta", new JSONObject(meta));
 
 		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
 		JSONObject jo = parseJSONData(response);
