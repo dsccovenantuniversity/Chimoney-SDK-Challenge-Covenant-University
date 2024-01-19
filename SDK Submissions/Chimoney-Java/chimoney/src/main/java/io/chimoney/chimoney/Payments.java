@@ -1,51 +1,83 @@
 package io.chimoney.chimoney;
 
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * The Payments class is a wrapper for the Payments module of the Chimoney
+ * API.
+ * 
+ */
 public class Payments extends Base {
+
+	/**
+	 * Represents the status of a payment.
+	 * Possible values are: failed, expired, fraud.
+	 */
 	enum Status {
 		failed, expired, fraud
 	}
 
+	/**
+	 * Constructs a new Payments object with the specified Chimoney instance.
+	 * 
+	 * @param chimoney the Chimoney instance associated with this Payments object
+	 */
 	public Payments(Chimoney chimoney) {
 		super(chimoney);
 	}
 
+	/**
+	 * Initiates a payment with the specified payer email and value in USD.
+	 *
+	 * @param payerEmail the email address of the payer
+	 * @param valueInUSD the value of the payment in USD
+	 * @return a map containing the payment details
+	 * @throws Exception if an error occurs during payment initiation
+	 */
 	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD) throws Exception {
-		JSONObject paramsJson = new JSONObject();
-		paramsJson.put("payerEmail", payerEmail);
-		paramsJson.put("valueInUSD", valueInUSD);
-
-		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONObject("data").toMap();
+		return initiatePayment(payerEmail, valueInUSD, null, null);
 	}
 
+	/**
+	 * Initiates a payment with the specified payer email, value in USD, and
+	 * sub-account.
+	 * 
+	 * @param payerEmail the email address of the payer
+	 * @param valueInUSD the value of the payment in USD
+	 * @param subAccount the sub-account for the payment
+	 * @return a map containing the payment details
+	 * @throws Exception if an error occurs during payment initiation
+	 */
 	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD, String subAccount) throws Exception {
-		JSONObject paramsJson = new JSONObject();
-		paramsJson.put("payerEmail", payerEmail);
-		paramsJson.put("valueInUSD", valueInUSD);
-		paramsJson.put("subAccount", subAccount);
-
-		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONObject("data").toMap();
+		return initiatePayment(payerEmail, valueInUSD, subAccount, null);
 	}
 
+	/**
+	 * Initiates a payment with the given payer email, value in USD, sub-account,
+	 * and metadata.
+	 * 
+	 * @param payerEmail the email address of the payer
+	 * @param valueInUSD the value of the payment in USD
+	 * @param subAccount the sub-account for the payment
+	 * @param meta       the metadata associated with the payment
+	 * @return a map containing the payment details
+	 * @throws Exception if an error occurs during the payment initiation process
+	 */
 	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD, String subAccount,
 			Map<String, String> meta) throws Exception {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("payerEmail", payerEmail);
 		paramsJson.put("valueInUSD", valueInUSD);
-		paramsJson.put("subAccount", subAccount);
-		paramsJson.put("meta", new JSONObject(meta));
+
+		if (subAccount != null)
+			paramsJson.put("subAccount", subAccount);
+
+		if (meta != null)
+			paramsJson.put("meta", new JSONObject(meta));
 
 		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
 		JSONObject jo = parseJSONData(response);
@@ -53,40 +85,60 @@ public class Payments extends Base {
 		return jo.getJSONObject("data").toMap();
 	}
 
+	/**
+	 * Initiates a payment with the specified payer email, currency, and amount.
+	 *
+	 * @param payerEmail the email address of the payer
+	 * @param currency   the currency of the payment. Check the Chimoney API
+	 *                   documentation for supported currencies.
+	 * @param amount     the amount of the payment
+	 * @return a map containing the payment details
+	 * @throws Exception if an error occurs during payment initiation
+	 */
 	public Map<String, Object> initiatePayment(String payerEmail, String currency, int amount) throws Exception {
-		JSONObject paramsJson = new JSONObject();
-		paramsJson.put("payerEmail", payerEmail);
-		paramsJson.put("currency", currency);
-		paramsJson.put("amount", amount);
-
-		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONObject("data").toMap();
+		return initiatePayment(payerEmail, currency, amount, null, null);
 	}
 
+	/**
+	 * Initiates a payment with the specified payer email, currency, and amount.
+	 *
+	 * @param payerEmail the email address of the payer
+	 * @param currency   the currency of the payment. Check the Chimoney API
+	 *                   documentation for supported currencies.
+	 * @param amount     the amount of the payment
+	 * @param subAccount the sub-account for the payment
+	 * @return a map containing the payment details
+	 * @throws Exception if an error occurs during payment initiation
+	 */
 	public Map<String, Object> initiatePayment(String payerEmail, String currency, int amount, String subAccount)
 			throws Exception {
-		JSONObject paramsJson = new JSONObject();
-		paramsJson.put("payerEmail", payerEmail);
-		paramsJson.put("currency", currency);
-		paramsJson.put("amount", amount);
-		paramsJson.put("subAccount", subAccount);
-
-		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONObject("data").toMap();
+		return initiatePayment(payerEmail, currency, amount, subAccount, null);
 	}
 
+	/**
+	 * Initiates a payment with the specified payer email, currency, and amount.
+	 *
+	 * @param payerEmail the email address of the payer
+	 * @param currency   the currency of the payment. Check the Chimoney API
+	 *                   documentation for supported currencies.
+	 * @param amount     the amount of the payment
+	 * @param subAccount the sub-account for the payment
+	 * @param meta       the metadata associated with the payment
+	 * @return a map containing the payment details
+	 * @throws Exception if an error occurs during payment initiation
+	 */
 	public Map<String, Object> initiatePayment(String payerEmail, String currency, int amount, String subAccount,
 			Map<String, String> meta) throws Exception {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("payerEmail", payerEmail);
 		paramsJson.put("currency", currency);
 		paramsJson.put("amount", amount);
-		paramsJson.put("subAccount", subAccount);
-		paramsJson.put("meta", new JSONObject(meta));
+
+		if (subAccount != null)
+			paramsJson.put("subAccount", subAccount);
+
+		if (meta != null)
+			paramsJson.put("meta", new JSONObject(meta));
 
 		HttpResponse<String> response = handlePOSTRequest("payment/initiate", paramsJson);
 		JSONObject jo = parseJSONData(response);
@@ -94,20 +146,31 @@ public class Payments extends Base {
 		return jo.getJSONObject("data").toMap();
 	}
 
-	public List<Object> verifyPayment(String id) throws Exception {
-		JSONObject paramsJson = new JSONObject();
-		paramsJson.put("id", id);
-
-		HttpResponse<String> response = handlePOSTRequest("payment/verify", paramsJson);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONArray("data").toList();
+	/**
+	 * Verifies a payment with the specified ID.
+	 *
+	 * @param id the ID of the payment to verify
+	 * @return a map containing the verified payment information
+	 * @throws Exception if an error occurs during the verification process
+	 */
+	public Map<String, Object> verifyPayment(String id) throws Exception {
+		return verifyPayment(id, null);
 	}
 
+	/**
+	 * Verifies a payment with the given ID and sub-account.
+	 *
+	 * @param id         the ID of the payment to verify
+	 * @param subAccount the sub-account associated with the payment
+	 * @return a map containing the verified payment information
+	 * @throws Exception if an error occurs during the verification process
+	 */
 	public Map<String, Object> verifyPayment(String id, String subAccount) throws Exception {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("id", id);
-		paramsJson.put("subAccount", subAccount);
+
+		if (subAccount != null)
+			paramsJson.put("subAccount", subAccount);
 
 		HttpResponse<String> response = handlePOSTRequest("payment/verify", paramsJson);
 		JSONObject jo = parseJSONData(response);
@@ -115,25 +178,29 @@ public class Payments extends Base {
 		return jo.getJSONObject("data").toMap();
 	}
 
+	/**
+	 * Simulates a card or other status change for a given issue ID, status, and
+	 * sub-account. This method only works in staging.
+	 * 
+	 * @param issueID the ID of the issue
+	 * @param status  the status of the payment
+	 * @return a map containing the simulated payment data
+	 * @throws Exception if an error occurs during the simulation
+	 */
 	public Map<String, Object> simulatePayment(String issueID, Status status) throws Exception {
-		JSONObject paramsJson = new JSONObject();
-		Map<String, Object> ret;
-
-		paramsJson.put("issueID", issueID);
-		paramsJson.put("status", status.toString());
-
-		HttpResponse<String> response = handlePOSTRequest("payment/simulate", paramsJson);
-		JSONObject jo = parseJSONData(response);
-
-		try {
-			ret = jo.getJSONObject("data").toMap();
-		} catch (JSONException e) {
-			ret = jo.toMap();
-		}
-
-		return ret;
+		return simulatePayment(issueID, status, null);
 	}
 
+	/**
+	 * Simulates a card or other status change for a given issue ID, status, and
+	 * sub-account. This method only works in staging.
+	 * 
+	 * @param issueID    the ID of the issue
+	 * @param status     the status of the payment
+	 * @param subAccount the sub-account for the payment
+	 * @return a map containing the simulated payment data
+	 * @throws Exception if an error occurs during the simulation
+	 */
 	public Map<String, Object> simulatePayment(String issueID, Status status, String subAccount)
 			throws Exception {
 		JSONObject paramsJson = new JSONObject();
@@ -141,7 +208,9 @@ public class Payments extends Base {
 
 		paramsJson.put("issueID", issueID);
 		paramsJson.put("status", status.toString());
-		paramsJson.put("subAccount", subAccount);
+
+		if (subAccount != null)
+			paramsJson.put("subAccount", subAccount);
 
 		HttpResponse<String> response = handlePOSTRequest("payment/simulate", paramsJson);
 		JSONObject jo = parseJSONData(response);

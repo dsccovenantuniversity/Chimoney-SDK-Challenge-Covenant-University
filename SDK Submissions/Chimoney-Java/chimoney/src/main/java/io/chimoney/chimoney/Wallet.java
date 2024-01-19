@@ -7,48 +7,84 @@ import java.util.Map;
 import org.json.JSONObject;
 
 /**
- * Wallet
+ * The Wallet class is a wrapper for the Wallet module of the Chimoney API.
+ * 
  */
 public class Wallet extends Base {
+
+	/**
+	 * Represents the types of wallets in Chimoney.
+	 * Possible values are: chi, momo, and airtime.
+	 */
 	enum Types {
 		chi, momo, airtime
 	}
 
+	/**
+	 * Constructs a new Wallet object with the specified Chimoney instance.
+	 * 
+	 * @param chimoney the Chimoney instance associated with this Wallet object
+	 */
 	public Wallet(Chimoney chimoney) {
 		super(chimoney);
 	}
 
+	/**
+	 * Retrieves a list of wallets associated with the user.
+	 *
+	 * @return a list of wallets
+	 * @throws Exception if an error occurs during the retrieval process
+	 */
 	public List<Object> listWallets() throws Exception {
-		HttpResponse<String> response = handlePOSTRequest("wallets/list", null);
+		return listWallets(null);
+	}
+
+	/**
+	 * Retrieves a list of wallets associated with the user.
+	 *
+	 * @param subAccount the sub-account to retrieve wallets for
+	 * @return a list of wallets
+	 * @throws Exception if an error occurs during the retrieval process
+	 */
+	public List<Object> listWallets(String subAccount) throws Exception {
+		JSONObject paramsJson = null;
+
+		if (subAccount != null) {
+			paramsJson = new JSONObject();
+			paramsJson.put("subAccount", subAccount);
+		}
+
+		HttpResponse<String> response = handlePOSTRequest("wallets/list", paramsJson);
 		JSONObject jo = parseJSONData(response);
 
 		return jo.getJSONArray("data").toList();
 	}
 
-	public List<Object> getWallets(String subAccount) throws Exception {
-		JSONObject params = new JSONObject();
-		params.put("subAccount", subAccount);
-
-		HttpResponse<String> response = handlePOSTRequest("wallets/list", params);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONArray("data").toList();
-	}
-
+	/**
+	 * Retrieves the wallet information for the specified wallet ID.
+	 *
+	 * @param walletID the ID of the wallet to retrieve
+	 * @return a map containing the wallet information
+	 * @throws Exception if an error occurs during the retrieval process
+	 */
 	public Map<String, Object> getWallet(String walletID) throws Exception {
-		JSONObject params = new JSONObject();
-		params.put("walletID", walletID);
-
-		HttpResponse<String> response = handlePOSTRequest("wallets/lookup", params);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONObject("data").toMap();
+		return getWallet(walletID, null);
 	}
 
+	/**
+	 * Retrieves the wallet information for the specified wallet ID and sub-account.
+	 *
+	 * @param walletID   the ID of the wallet to retrieve
+	 * @param subAccount the sub-account associated with the wallet
+	 * @return a map containing the wallet information
+	 * @throws Exception if an error occurs during the retrieval process
+	 */
 	public Map<String, Object> getWallet(String walletID, String subAccount) throws Exception {
 		JSONObject params = new JSONObject();
 		params.put("walletID", walletID);
-		params.put("subAccount", subAccount);
+
+		if (subAccount != null)
+			params.put("subAccount", subAccount);
 
 		HttpResponse<String> response = handlePOSTRequest("wallets/lookup", params);
 		JSONObject jo = parseJSONData(response);
@@ -56,36 +92,53 @@ public class Wallet extends Base {
 		return jo.getJSONObject("data").toMap();
 	}
 
+	/**
+	 * Transfers funds to a wallet.
+	 *
+	 * @param receiver   the receiver's wallet address
+	 * @param valueInUSD the value to transfer in USD
+	 * @return a map containing the transferred funds details
+	 * @throws Exception if an error occurs during the transfer
+	 */
 	public Map<String, Object> transferToWallet(String receiver, int valueInUSD) throws Exception {
-		JSONObject params = new JSONObject();
-		params.put("receiver", receiver);
-		params.put("valueInUSD", valueInUSD);
-
-		HttpResponse<String> response = handlePOSTRequest("wallets/transfer", params);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONObject("data").toMap();
+		return transferToWallet(receiver, valueInUSD, null, null);
 	}
 
-	public Map<String, Object> transferToWallet(String receiver, int valueInUSD, Types walletType) throws Exception {
-		JSONObject params = new JSONObject();
-		params.put("receiver", receiver);
-		params.put("valueInUSD", valueInUSD);
-		params.put("wallet", walletType.toString());
-
-		HttpResponse<String> response = handlePOSTRequest("wallets/transfer", params);
-		JSONObject jo = parseJSONData(response);
-
-		return jo.getJSONObject("data").toMap();
+	/**
+	 * Transfers funds to a wallet.
+	 *
+	 * @param receiver   the receiver's wallet address
+	 * @param valueInUSD the value to transfer in USD
+	 * @param subAccount the sub-account to transfer funds to
+	 * @return a map containing the transferred funds details
+	 * @throws Exception if an error occurs during the transfer
+	 */
+	public Map<String, Object> transferToWallet(String receiver, int valueInUSD, String subAccount) throws Exception {
+		return transferToWallet(receiver, valueInUSD, subAccount, null);
 	}
 
-	public Map<String, Object> transferToWallet(String receiver, int valueInUSD, Types walletType, String subAccount)
+	/**
+	 * Transfers funds to a wallet.
+	 *
+	 * @param receiver   the receiver's wallet address
+	 * @param valueInUSD the value to transfer in USD
+	 * @param subAccount the sub-account to transfer funds to
+	 * @param walletType the type of wallet. Leave blank except you fully understand
+	 *                   the different wallet types
+	 * @return a map containing the transferred funds details
+	 * @throws Exception if an error occurs during the transfer
+	 */
+	public Map<String, Object> transferToWallet(String receiver, int valueInUSD, String subAccount, Types walletType)
 			throws Exception {
 		JSONObject params = new JSONObject();
 		params.put("receiver", receiver);
 		params.put("valueInUSD", valueInUSD);
-		params.put("wallet", walletType.toString());
-		params.put("subAccount", subAccount);
+
+		if (walletType != null)
+			params.put("wallet", walletType.toString());
+
+		if (subAccount != null)
+			params.put("subAccount", subAccount);
 
 		HttpResponse<String> response = handlePOSTRequest("wallets/transfer", params);
 		JSONObject jo = parseJSONData(response);

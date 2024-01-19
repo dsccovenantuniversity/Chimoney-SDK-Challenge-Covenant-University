@@ -1,6 +1,5 @@
 package io.chimoney.chimoney;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -45,7 +44,8 @@ class Base {
 		JSONObject obj = new JSONObject(response.body());
 
 		if (obj.has("error")) {
-			throw new ChimoneyException(obj.getString("error"));
+			String msg = "Error code " + response.statusCode() + " - " + obj.getString("error");
+			throw new ChimoneyException(msg);
 		}
 
 		return obj;
