@@ -1,5 +1,6 @@
 package io.chimoney.chimoney;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -9,7 +10,7 @@ import org.json.JSONObject;
 
 class Base {
 	private Chimoney chimoney;
-	HttpClient client = HttpClient.newHttpClient();
+	private HttpClient client = HttpClient.newHttpClient();
 
 	Base(Chimoney chimoney) {
 		this.chimoney = chimoney;
@@ -40,8 +41,13 @@ class Base {
 		return client.send(request, HttpResponse.BodyHandlers.ofString());
 	}
 
-	JSONObject parseJSONData(HttpResponse<String> response) {
-		// System.out.println(response.body());
-		return new JSONObject(response.body());
+	JSONObject parseJSONData(HttpResponse<String> response) throws ChimoneyException {
+		JSONObject obj = new JSONObject(response.body());
+
+		if (obj.has("error")) {
+			throw new ChimoneyException(obj.getString("error"));
+		}
+
+		return obj;
 	}
 }

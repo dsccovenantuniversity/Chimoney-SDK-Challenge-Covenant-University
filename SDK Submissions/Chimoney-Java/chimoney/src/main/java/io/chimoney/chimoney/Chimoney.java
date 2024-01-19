@@ -40,7 +40,10 @@ public class Chimoney {
 		return this.baseURL;
 	}
 
-	String getAPIKey() {
+	String getAPIKey() throws ChimoneyException {
+		if (this.API_KEY == null)
+			throw new ChimoneyException("API Key not set");
+
 		return this.API_KEY;
 	}
 }
