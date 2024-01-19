@@ -1,3 +1,4 @@
 pub mod account;
+pub mod beneficiary;
 pub mod core;
 pub mod info;
