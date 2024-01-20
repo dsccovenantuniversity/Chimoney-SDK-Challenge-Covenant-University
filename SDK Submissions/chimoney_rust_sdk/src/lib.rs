@@ -3,3 +3,4 @@ pub mod beneficiary;
 pub mod core;
 pub mod info;
 pub mod payment;
+pub mod payouts;
