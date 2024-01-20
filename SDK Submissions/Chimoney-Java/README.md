@@ -88,5 +88,5 @@ or
 
 ```java
 String API_KEY = "your_api_key";
-Chimoney chimoney = Chimoney.sandbox(API_KEY);
+Chimoney chimoney = Chimoney.withSandbox(API_KEY);
 ```
