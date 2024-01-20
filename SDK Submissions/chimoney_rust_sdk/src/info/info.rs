@@ -26,9 +26,19 @@ pub async fn get_airtime_countries(
 
 /// Get list of all assets in chimoney
 ///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+/// * `country_code` - The country code of the assets to be retrieved.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the list of assets if successful,
+/// or an error if the request fails.
+///
 /// # Example
 ///
-/// ```
+/// ```rust
 /// use chimoney::info::info;
 /// use chimoney::core::api_client::APIClient;
 ///
@@ -53,6 +63,16 @@ pub async fn get_assets(
 
 /// Get list of supported banks and bank codes for chimoney
 ///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+/// * `country_code` - The country code of the banks to be retrieved.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the list of banks if successful,
+/// or an error if the request fails.
+///
 /// # Example
 ///
 /// ```
@@ -66,6 +86,7 @@ pub async fn get_assets(
 /// println!("{}", res);
 /// }
 /// ```
+///
 pub async fn get_banks(
     api_client: &APIClient,
     country_code: &str,
@@ -79,6 +100,16 @@ pub async fn get_banks(
 }
 
 /// Get list of bank branches and branch codes for chimoney
+///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+/// * `bank_code` - The bank code of the branches to be retrieved.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the list of branches if successful,
+/// or an error if the request fails.
 ///
 /// # Example
 ///
@@ -107,6 +138,15 @@ pub async fn get_bank_branches(
 
 /// Get exchange rates for chimoney
 ///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the exchange rates if successful,
+/// or an error if the request fails.
+///
 /// # Example
 ///
 /// ```
@@ -128,7 +168,18 @@ pub async fn get_exchange_rates(
     Ok(res)
 }
 
-/// convert local currency to USD
+/// Convert local currency to USD
+///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+/// * `origin_currency` - The origin currency to be converted.
+/// * `amount_in_origin_currency` - The amount in origin currency to be converted.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the converted amount if successful,
+/// or an error if the request fails.
 ///
 /// # Example
 ///
@@ -160,9 +211,18 @@ pub async fn get_local_currency_to_usd(
 
 /// Get list of all supported mobile money code
 ///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the list of mobile money codes if successful,
+/// or an error if the request fails.
+///
 /// # Example
 ///
-/// ```
+/// ```rust
 /// use chimoney::info::info;
 /// use chimoney::core::api_client::APIClient;
 ///
@@ -173,6 +233,7 @@ pub async fn get_local_currency_to_usd(
 /// println!("{}", res);
 /// }
 /// ```
+///
 pub async fn get_mobile_money_codes(
     api_client: &APIClient,
 ) -> Result<String, Box<dyn std::error::Error>> {
@@ -181,7 +242,18 @@ pub async fn get_mobile_money_codes(
     Ok(res)
 }
 
-/// Get usd amount in Local.
+/// Get USD amount in Local Currency.
+///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+/// * `destination_currency` - The destination currency to be converted.
+/// * `amount_in_usd` - The amount in USD to be converted.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the converted amount if successful,
+/// or an error if the request fails
 ///
 /// # Example
 ///
@@ -211,11 +283,23 @@ pub async fn get_usd_to_local_currency(
     Ok(res)
 }
 
-/// verify a bank account number or multiple bank account numbers
+/// Verify a bank account number or multiple bank account numbers
+///
+/// # Arguments
+///
+/// * `api_client` - An instance of the `APIClient` used to make API requests.
+/// * `country_code` - The country code of the bank account to be verified.
+/// * `account_bank` - The bank code of the bank account to be verified.
+/// * `account_number` - The account number of the bank account to be verified.
+///
+/// # Returns
+///
+/// A `Result` containing a JSON string with the verification result if successful,
+/// or an error if the request fails.
 ///
 /// # Example
 ///
-/// ```
+/// ```rust
 /// use chimoney::info::info;
 /// use chimoney::core::api_client::APIClient;
 ///
@@ -226,6 +310,7 @@ pub async fn get_usd_to_local_currency(
 /// println!("{}", res);
 /// }
 /// ```
+///
 pub async fn verify_bank_account(
     api_client: &APIClient,
     country_code: &str,
