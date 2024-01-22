@@ -27,9 +27,9 @@ public class SubAccount extends Base {
 	 *
 	 * @param name the name of the sub-account
 	 * @return a map containing the data of the created sub-account
-	 * @throws Exception if an error occurs during the creation process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> create(String name) throws Exception {
+	public Map<String, Object> create(String name) throws ChimoneyException {
 		return create(name, null, null, null, null);
 	}
 
@@ -39,9 +39,9 @@ public class SubAccount extends Base {
 	 * @param name  the name of the sub-account
 	 * @param email the email address of user
 	 * @return a map containing the data of the created sub-account
-	 * @throws Exception if an error occurs during the creation process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> create(String name, String email) throws Exception {
+	public Map<String, Object> create(String name, String email) throws ChimoneyException {
 		return create(name, email, null, null, null);
 	}
 
@@ -52,9 +52,9 @@ public class SubAccount extends Base {
 	 * @param firstName the first name of user
 	 * @param lastName  the last name of user
 	 * @return a map containing the data of the created sub-account
-	 * @throws Exception if an error occurs during the creation process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> create(String name, String firstName, String lastName) throws Exception {
+	public Map<String, Object> create(String name, String firstName, String lastName) throws ChimoneyException {
 		return create(name, null, firstName, lastName, null);
 	}
 
@@ -66,9 +66,10 @@ public class SubAccount extends Base {
 	 * @param firstName the first name of user
 	 * @param lastName  the last name of user
 	 * @return a map containing the data of the created sub-account
-	 * @throws Exception if an error occurs during the creation process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> create(String name, String email, String firstName, String lastName) throws Exception {
+	public Map<String, Object> create(String name, String email, String firstName, String lastName)
+			throws ChimoneyException {
 		return create(name, email, firstName, lastName, null);
 	}
 
@@ -82,10 +83,10 @@ public class SubAccount extends Base {
 	 * @param phoneNumber the phone number of the sub-account starting with a
 	 *                    <b>+</b> and country code
 	 * @return a map containing the data of the created sub-account
-	 * @throws Exception if an error occurs during the creation process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> create(String name, String email, String firstName, String lastName, String phoneNumber)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("name", name);
 
@@ -110,62 +111,63 @@ public class SubAccount extends Base {
 	/**
 	 * Update a sub-account.
 	 *
-	 * @param id   The ID of the sub-account to update.
-	 * @param meta The metadata to store any number of user information.
+	 * @param id   the ID of the sub-account to update
+	 * @param meta the metadata to store any number of user information.
 	 *             Check the Chimoney API docmentation for more information
-	 * @return A map containing the updated sub-account data
-	 * @throws Exception If an error occurs during the update process
+	 * @return a map containing the updated sub-account data
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> update(String id, Map<String, String> meta) throws Exception {
+	public Map<String, Object> update(String id, Map<String, String> meta) throws ChimoneyException {
 		return update(id, meta, null, null, null);
 	}
 
 	/**
 	 * Update a sub-account.
 	 *
-	 * @param id        The ID of the sub-account to update.
-	 * @param meta      The metadata to store any number of user information.
+	 * @param id        the ID of the sub-account to update
+	 * @param meta      the metadata to store any number of user information.
 	 *                  Check the Chimoney API docmentation for more information
-	 * @param firstName The new first name for the sub-account
-	 * @param lastName  The new last name for the sub-account
-	 * @return A map containing the updated sub-account data
-	 * @throws Exception If an error occurs during the update process
+	 * @param firstName the new first name for the sub-account
+	 * @param lastName  the new last name for the sub-account
+	 * @return a map containing the updated sub-account data
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> update(String id, Map<String, String> meta, String firstName, String lastName)
-			throws Exception {
+			throws ChimoneyException {
 		return update(id, meta, firstName, lastName, null);
 	}
 
 	/**
 	 * Update a sub-account.
 	 *
-	 * @param id          The ID of the sub-account to update.
-	 * @param meta        The metadata to store any number of user information.
+	 * @param id          the ID of the sub-account to update
+	 * @param meta        the metadata to store any number of user information.
 	 *                    Check the Chimoney API docmentation for more information
-	 * @param phoneNumber The new phone number for the sub-account starting with a
+	 * @param phoneNumber the new phone number for the sub-account starting with a
 	 *                    <b>+</b> and country code
-	 * @return A map containing the updated sub-account data
-	 * @throws Exception If an error occurs during the update process
+	 * @return a map containing the updated sub-account data
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> update(String id, Map<String, String> meta, String phoneNumber) throws Exception {
+	public Map<String, Object> update(String id, Map<String, String> meta, String phoneNumber)
+			throws ChimoneyException {
 		return update(id, meta, null, null, phoneNumber);
 	}
 
 	/**
 	 * Update a sub-account.
 	 *
-	 * @param id          The ID of the sub-account to update.
-	 * @param meta        The metadata to store any number of user information.
+	 * @param id          the ID of the sub-account to update
+	 * @param meta        the metadata to store any number of user information.
 	 *                    Check the Chimoney API docmentation for more information
-	 * @param firstName   The new first name for the sub-account
-	 * @param lastName    The new last name for the sub-account
-	 * @param phoneNumber The new phone number for the sub-account starting with a
+	 * @param firstName   the new first name for the sub-account
+	 * @param lastName    the new last name for the sub-account
+	 * @param phoneNumber the new phone number for the sub-account starting with a
 	 *                    <b>+</b> and country code
-	 * @return A map containing the updated sub-account data
-	 * @throws Exception If an error occurs during the update process
+	 * @return a map containing the updated sub-account data
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> update(String id, Map<String, String> meta, String firstName, String lastName,
-			String phoneNumber) throws Exception {
+			String phoneNumber) throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("id", id);
 		params.put("meta", new JSONObject(meta));
@@ -188,11 +190,11 @@ public class SubAccount extends Base {
 	/**
 	 * Retrieves the details of a sub-account with the specified ID.
 	 *
-	 * @param id The ID of the sub-account.
-	 * @return A map containing the details of the sub-account.
-	 * @throws Exception If an error occurs while retrieving the details.
+	 * @param id the ID of the sub-account
+	 * @return a map containing the details of the sub-account
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getDetails(String id) throws Exception {
+	public Map<String, Object> getDetails(String id) throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest("sub-account/get?id=" + id);
 		JSONObject jo = parseJSONData(response);
 
@@ -202,10 +204,10 @@ public class SubAccount extends Base {
 	/**
 	 * Retrieves a list of sub-accounts associated with this user.
 	 *
-	 * @return A list of sub-accounts.
-	 * @throws Exception If an error occurs while retrieving the sub-accounts.
+	 * @return a list of sub-accounts
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getUserSubAccounts() throws Exception {
+	public List<Object> getUserSubAccounts() throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest("sub-account/list");
 		JSONObject jo = parseJSONData(response);
 
@@ -215,11 +217,11 @@ public class SubAccount extends Base {
 	/**
 	 * Deletes a sub-account with the specified ID.
 	 *
-	 * @param id The ID of the sub-account to delete.
-	 * @return A map containing the data of the deleted sub-account.
-	 * @throws Exception If an error occurs during the deletion process.
+	 * @param id the ID of the sub-account to delete
+	 * @return a map containing the data of the deleted sub-account
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> delete(String id) throws Exception {
+	public Map<String, Object> delete(String id) throws ChimoneyException {
 		HttpResponse<String> response = handleDELETERequest("sub-account/delete?id=" + id);
 		JSONObject jo = parseJSONData(response);
 

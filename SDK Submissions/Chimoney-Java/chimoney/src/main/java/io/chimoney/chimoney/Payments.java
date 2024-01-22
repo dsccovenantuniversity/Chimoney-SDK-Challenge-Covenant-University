@@ -36,9 +36,9 @@ public class Payments extends Base {
 	 * @param payerEmail the email address of the payer
 	 * @param valueInUSD the value of the payment in USD
 	 * @return a map containing the payment details
-	 * @throws Exception if an error occurs during payment initiation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD) throws Exception {
+	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD) throws ChimoneyException {
 		return initiatePayment(payerEmail, valueInUSD, null, null);
 	}
 
@@ -50,9 +50,10 @@ public class Payments extends Base {
 	 * @param valueInUSD the value of the payment in USD
 	 * @param subAccount the sub-account for the payment
 	 * @return a map containing the payment details
-	 * @throws Exception if an error occurs during payment initiation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD, String subAccount) throws Exception {
+	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD, String subAccount)
+			throws ChimoneyException {
 		return initiatePayment(payerEmail, valueInUSD, subAccount, null);
 	}
 
@@ -65,10 +66,10 @@ public class Payments extends Base {
 	 * @param subAccount the sub-account for the payment
 	 * @param meta       the metadata associated with the payment
 	 * @return a map containing the payment details
-	 * @throws Exception if an error occurs during the payment initiation process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> initiatePayment(String payerEmail, int valueInUSD, String subAccount,
-			Map<String, String> meta) throws Exception {
+			Map<String, String> meta) throws ChimoneyException {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("payerEmail", payerEmail);
 		paramsJson.put("valueInUSD", valueInUSD);
@@ -93,9 +94,10 @@ public class Payments extends Base {
 	 *                   documentation for supported currencies.
 	 * @param amount     the amount of the payment
 	 * @return a map containing the payment details
-	 * @throws Exception if an error occurs during payment initiation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> initiatePayment(String payerEmail, String currency, int amount) throws Exception {
+	public Map<String, Object> initiatePayment(String payerEmail, String currency, int amount)
+			throws ChimoneyException {
 		return initiatePayment(payerEmail, currency, amount, null, null);
 	}
 
@@ -108,10 +110,10 @@ public class Payments extends Base {
 	 * @param amount     the amount of the payment
 	 * @param subAccount the sub-account for the payment
 	 * @return a map containing the payment details
-	 * @throws Exception if an error occurs during payment initiation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> initiatePayment(String payerEmail, String currency, int amount, String subAccount)
-			throws Exception {
+			throws ChimoneyException {
 		return initiatePayment(payerEmail, currency, amount, subAccount, null);
 	}
 
@@ -125,10 +127,10 @@ public class Payments extends Base {
 	 * @param subAccount the sub-account for the payment
 	 * @param meta       the metadata associated with the payment
 	 * @return a map containing the payment details
-	 * @throws Exception if an error occurs during payment initiation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> initiatePayment(String payerEmail, String currency, int amount, String subAccount,
-			Map<String, String> meta) throws Exception {
+			Map<String, String> meta) throws ChimoneyException {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("payerEmail", payerEmail);
 		paramsJson.put("currency", currency);
@@ -151,9 +153,9 @@ public class Payments extends Base {
 	 *
 	 * @param id the ID of the payment to verify
 	 * @return a map containing the verified payment information
-	 * @throws Exception if an error occurs during the verification process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> verifyPayment(String id) throws Exception {
+	public Map<String, Object> verifyPayment(String id) throws ChimoneyException {
 		return verifyPayment(id, null);
 	}
 
@@ -163,9 +165,9 @@ public class Payments extends Base {
 	 * @param id         the ID of the payment to verify
 	 * @param subAccount the sub-account associated with the payment
 	 * @return a map containing the verified payment information
-	 * @throws Exception if an error occurs during the verification process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> verifyPayment(String id, String subAccount) throws Exception {
+	public Map<String, Object> verifyPayment(String id, String subAccount) throws ChimoneyException {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("id", id);
 
@@ -185,9 +187,9 @@ public class Payments extends Base {
 	 * @param issueID the ID of the issue
 	 * @param status  the status of the payment
 	 * @return a map containing the simulated payment data
-	 * @throws Exception if an error occurs during the simulation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> simulatePayment(String issueID, Status status) throws Exception {
+	public Map<String, Object> simulatePayment(String issueID, Status status) throws ChimoneyException {
 		return simulatePayment(issueID, status, null);
 	}
 
@@ -199,10 +201,10 @@ public class Payments extends Base {
 	 * @param status     the status of the payment
 	 * @param subAccount the sub-account for the payment
 	 * @return a map containing the simulated payment data
-	 * @throws Exception if an error occurs during the simulation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> simulatePayment(String issueID, Status status, String subAccount)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject paramsJson = new JSONObject();
 		Map<String, Object> ret;
 

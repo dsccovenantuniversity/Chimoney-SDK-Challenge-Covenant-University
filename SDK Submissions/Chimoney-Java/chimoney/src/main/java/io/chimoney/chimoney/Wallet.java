@@ -33,9 +33,9 @@ public class Wallet extends Base {
 	 * Retrieves a list of wallets associated with the user.
 	 *
 	 * @return a list of wallets
-	 * @throws Exception if an error occurs during the retrieval process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> listWallets() throws Exception {
+	public List<Object> listWallets() throws ChimoneyException {
 		return listWallets(null);
 	}
 
@@ -44,9 +44,9 @@ public class Wallet extends Base {
 	 *
 	 * @param subAccount the sub-account to retrieve wallets for
 	 * @return a list of wallets
-	 * @throws Exception if an error occurs during the retrieval process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> listWallets(String subAccount) throws Exception {
+	public List<Object> listWallets(String subAccount) throws ChimoneyException {
 		JSONObject paramsJson = null;
 
 		if (subAccount != null) {
@@ -65,9 +65,9 @@ public class Wallet extends Base {
 	 *
 	 * @param walletID the ID of the wallet to retrieve
 	 * @return a map containing the wallet information
-	 * @throws Exception if an error occurs during the retrieval process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getWallet(String walletID) throws Exception {
+	public Map<String, Object> getWallet(String walletID) throws ChimoneyException {
 		return getWallet(walletID, null);
 	}
 
@@ -77,9 +77,9 @@ public class Wallet extends Base {
 	 * @param walletID   the ID of the wallet to retrieve
 	 * @param subAccount the sub-account associated with the wallet
 	 * @return a map containing the wallet information
-	 * @throws Exception if an error occurs during the retrieval process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getWallet(String walletID, String subAccount) throws Exception {
+	public Map<String, Object> getWallet(String walletID, String subAccount) throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("walletID", walletID);
 
@@ -98,9 +98,9 @@ public class Wallet extends Base {
 	 * @param receiver   the receiver's wallet address
 	 * @param valueInUSD the value to transfer in USD
 	 * @return a map containing the transferred funds details
-	 * @throws Exception if an error occurs during the transfer
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> transferToWallet(String receiver, int valueInUSD) throws Exception {
+	public Map<String, Object> transferToWallet(String receiver, int valueInUSD) throws ChimoneyException {
 		return transferToWallet(receiver, valueInUSD, null, null);
 	}
 
@@ -111,9 +111,10 @@ public class Wallet extends Base {
 	 * @param valueInUSD the value to transfer in USD
 	 * @param subAccount the sub-account to transfer funds to
 	 * @return a map containing the transferred funds details
-	 * @throws Exception if an error occurs during the transfer
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> transferToWallet(String receiver, int valueInUSD, String subAccount) throws Exception {
+	public Map<String, Object> transferToWallet(String receiver, int valueInUSD, String subAccount)
+			throws ChimoneyException {
 		return transferToWallet(receiver, valueInUSD, subAccount, null);
 	}
 
@@ -126,10 +127,10 @@ public class Wallet extends Base {
 	 * @param walletType the type of wallet. Leave blank except you fully understand
 	 *                   the different wallet types
 	 * @return a map containing the transferred funds details
-	 * @throws Exception if an error occurs during the transfer
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> transferToWallet(String receiver, int valueInUSD, String subAccount, Types walletType)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("receiver", receiver);
 		params.put("valueInUSD", valueInUSD);

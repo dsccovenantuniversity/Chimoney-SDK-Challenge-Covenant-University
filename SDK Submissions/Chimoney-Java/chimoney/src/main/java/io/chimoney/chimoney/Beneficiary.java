@@ -24,13 +24,14 @@ public class Beneficiary extends Base {
 	/**
 	 * Creates a beneficiary with the given user ID and beneficiary data.
 	 *
-	 * @param ownerID         The ID of the user/sub-account.
-	 * @param beneficiaryData The data of the beneficiary.
+	 * @param ownerID         the ID of the user/sub-account
+	 * @param beneficiaryData the data of the beneficiary
 	 * @return A map containing the beneficiary data. Check the Chimoney API
-	 *         documentation for more information.
-	 * @throws Exception If an error occurs during the creation of the beneficiary.
+	 *         documentation for more information
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> createBeneficiary(String ownerID, Map<String, String> beneficiaryData) throws Exception {
+	public Map<String, Object> createBeneficiary(String ownerID, Map<String, String> beneficiaryData)
+			throws ChimoneyException {
 		JSONObject paramsJson = new JSONObject();
 		paramsJson.put("owner", ownerID);
 		paramsJson.put("beneficiaryData", new JSONObject(beneficiaryData));

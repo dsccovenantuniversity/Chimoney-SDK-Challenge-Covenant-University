@@ -24,44 +24,45 @@ public class Redeem extends Base {
 	/**
 	 * Redeems airtime.
 	 * 
-	 * @param chiRef        The Chi reference
-	 * @param phoneNumber   The phone number to send the airtime to
-	 * @param countryToSend The country to send the airtime to
-	 * @return A map containing the response data
-	 * @throws Exception If an error occurs during the redemption process
+	 * @param chiRef        the Chi reference
+	 * @param phoneNumber   the phone number to send the airtime to
+	 * @param countryToSend the country to send the airtime to
+	 * @return a map containing the response data
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> airtime(String chiRef, String phoneNumber, String countryToSend) throws Exception {
+	public Map<String, Object> airtime(String chiRef, String phoneNumber, String countryToSend)
+			throws ChimoneyException {
 		return airtime(chiRef, phoneNumber, countryToSend, null, null);
 	}
 
 	/**
 	 * Redeems airtime.
 	 * 
-	 * @param chiRef        The Chi reference
-	 * @param phoneNumber   The phone number to send the airtime to
-	 * @param countryToSend The country to send the airtime to
-	 * @param subAccount    The sub-account to use
-	 * @return A map containing the response data
-	 * @throws Exception If an error occurs during the redemption process
+	 * @param chiRef        the Chi reference
+	 * @param phoneNumber   the phone number to send the airtime to
+	 * @param countryToSend the country to send the airtime to
+	 * @param subAccount    the sub-account to use
+	 * @return a map containing the response data
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> airtime(String chiRef, String phoneNumber, String countryToSend, String subAccount)
-			throws Exception {
+			throws ChimoneyException {
 		return airtime(chiRef, phoneNumber, countryToSend, subAccount, null);
 	}
 
 	/**
 	 * Redeem airtime transactions.
 	 * 
-	 * @param chiRef        The Chi reference
-	 * @param phoneNumber   The phone number to send the airtime to
-	 * @param countryToSend The country to send the airtime to
-	 * @param subAccount    The sub-account to use
-	 * @param meta          Additional meta data
-	 * @return A map containing the response data
-	 * @throws Exception If an error occurs during the redemption process
+	 * @param chiRef        the Chi reference
+	 * @param phoneNumber   the phone number to send the airtime to
+	 * @param countryToSend the country to send the airtime to
+	 * @param subAccount    the sub-account to use
+	 * @param meta          additional meta data
+	 * @return a map containing the response data
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> airtime(String chiRef, String phoneNumber, String countryToSend, String subAccount,
-			Map<String, String> meta) throws Exception {
+			Map<String, String> meta) throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("chiRef", chiRef);
 		params.put("phoneNumber", phoneNumber);
@@ -86,9 +87,9 @@ public class Redeem extends Base {
 	 * @param redeemData the data required to redeem. Check the Chimoney API
 	 *                   document for more information
 	 * @return a map containing the response data
-	 * @throws Exception if an error occurs during the redeem operation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> any(String chiRef, Map<String, String> redeemData) throws Exception {
+	public Map<String, Object> any(String chiRef, Map<String, String> redeemData) throws ChimoneyException {
 		return any(chiRef, redeemData, null, null);
 	}
 
@@ -100,9 +101,10 @@ public class Redeem extends Base {
 	 *                   document for more information
 	 * @param subAccount the sub-account to use
 	 * @return a map containing the response data
-	 * @throws Exception if an error occurs during the redeem operation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> any(String chiRef, Map<String, String> redeemData, String subAccount) throws Exception {
+	public Map<String, Object> any(String chiRef, Map<String, String> redeemData, String subAccount)
+			throws ChimoneyException {
 		return any(chiRef, redeemData, subAccount, null);
 	}
 
@@ -115,10 +117,10 @@ public class Redeem extends Base {
 	 * @param subAccount the sub-account to use
 	 * @param meta       additional metadata
 	 * @return a map containing the response data
-	 * @throws Exception if an error occurs during the redeem operation
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> any(String chiRef, Map<String, String> redeemData, String subAccount,
-			Map<String, String> meta) throws Exception {
+			Map<String, String> meta) throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("chiRef", chiRef);
 		params.put("redeemData", new JSONObject(redeemData));
@@ -138,44 +140,44 @@ public class Redeem extends Base {
 	/**
 	 * Redeem Chimoney.
 	 * 
-	 * @param chimoneys An array of Chimoney key-value objects to be
+	 * @param chimoneys an array of Chimoney key-value objects to be
 	 *                  redeemed. Check the Chimoney API document for more
 	 *                  information
-	 * @return A map containing the response data from the redemption request
-	 * @throws Exception If an error occurs during the redemption process
+	 * @return a map containing the response data from the redemption request
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> chimoney(Map<String, String>[] chimoneys) throws Exception {
+	public Map<String, Object> chimoney(Map<String, String>[] chimoneys) throws ChimoneyException {
 		return chimoney(chimoneys, null, false);
 	}
 
 	/**
 	 * Redeem Chimoney.
 	 * 
-	 * @param chimoneys  An array of Chimoney key-value objects to be
+	 * @param chimoneys  an array of Chimoney key-value objects to be
 	 *                   redeemed. Check the Chimoney API document for more
 	 *                   information
-	 * @param subAccount The sub-account to use
-	 * @return A map containing the response data from the redemption request
-	 * @throws Exception If an error occurs during the redemption process
+	 * @param subAccount the sub-account to use
+	 * @return a map containing the response data from the redemption request
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> chimoney(Map<String, String>[] chimoneys, String subAccount) throws Exception {
+	public Map<String, Object> chimoney(Map<String, String>[] chimoneys, String subAccount) throws ChimoneyException {
 		return chimoney(chimoneys, subAccount, false);
 	}
 
 	/**
 	 * Redeem Chimoney.
 	 * 
-	 * @param chimoneys           An array of Chimoney key-value objects to be
+	 * @param chimoneys           an array of Chimoney key-value objects to be
 	 *                            redeemed. Check the Chimoney API document for more
 	 *                            information
-	 * @param subAccount          The sub-account to use
-	 * @param turnOffNotification A boolean value indicating whether to turn off
+	 * @param subAccount          the sub-account to use
+	 * @param turnOffNotification a boolean value indicating whether to turn off
 	 *                            notification
-	 * @return A map containing the response data from the redemption request
-	 * @throws Exception If an error occurs during the redemption process
+	 * @return a map containing the response data from the redemption request
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> chimoney(Map<String, String>[] chimoneys, String subAccount, boolean turnOffNotification)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		JSONArray ja = new JSONArray();
 
@@ -199,29 +201,29 @@ public class Redeem extends Base {
 	/**
 	 * Redeem a gift card.
 	 *
-	 * @param chiRef        The reference number of the gift card
-	 * @param redeemOptions The options for redeeming the gift card. Check the
+	 * @param chiRef        the reference number of the gift card
+	 * @param redeemOptions the options for redeeming the gift card. Check the
 	 *                      Chimoney API documentation for more information
-	 * @return A map containing the response data from the gift card redemption
-	 * @throws Exception If an error occurs during the redemption process
+	 * @return a map containing the response data from the gift card redemption
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> giftCard(String chiRef, Map<String, String> redeemOptions)
-			throws Exception {
+			throws ChimoneyException {
 		return giftCard(chiRef, redeemOptions, null);
 	}
 
 	/**
 	 * Redeem a gift card.
 	 *
-	 * @param chiRef        The reference number of the gift card
-	 * @param redeemOptions The options for redeeming the gift card. Check the
+	 * @param chiRef        the reference number of the gift card
+	 * @param redeemOptions the options for redeeming the gift card. Check the
 	 *                      Chimoney API documentation for more information
-	 * @param subAccount    The sub-account to use
-	 * @return A map containing the response data from the gift card redemption
-	 * @throws Exception If an error occurs during the redemption process
+	 * @param subAccount    the sub-account to use
+	 * @return a map containing the response data from the gift card redemption
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> giftCard(String chiRef, Map<String, String> redeemOptions, String subAccount)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("chiRef", chiRef);
 		params.put("redeemOptions", new JSONObject(redeemOptions));
@@ -238,30 +240,30 @@ public class Redeem extends Base {
 	/**
 	 * Redeem mobile money.
 	 *
-	 * @param chiRef        The Chi reference.
-	 * @param redeemOptions The data for redeeming mobile money. Check the Chimoney
+	 * @param chiRef        the Chi reference
+	 * @param redeemOptions the data for redeeming mobile money. Check the Chimoney
 	 *                      API documentation for more information
-	 * @param subAccount    The sub-account to use
-	 * @return A map containing the response data from the redemption process
-	 * @throws Exception If an error occurs during the redemption process
+	 * @param subAccount    the sub-account to use
+	 * @return a map containing the response data from the redemption process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> mobileMoney(String chiRef, Map<String, String> redeemOptions)
-			throws Exception {
+			throws ChimoneyException {
 		return mobileMoney(chiRef, redeemOptions, null);
 	}
 
 	/**
 	 * Redeem mobile money.
 	 *
-	 * @param chiRef        The Chi reference.
-	 * @param redeemOptions The data for redeeming mobile money. Check the Chimoney
+	 * @param chiRef        the Chi reference
+	 * @param redeemOptions the data for redeeming mobile money. Check the Chimoney
 	 *                      API documentation for more information
-	 * @param subAccount    The sub-account to use
-	 * @return A map containing the response data from the redemption process
-	 * @throws Exception If an error occurs during the redemption process
+	 * @param subAccount    the sub-account to use
+	 * @return a map containing the response data from the redemption process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> mobileMoney(String chiRef, Map<String, String> redeemOptions, String subAccount)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject params = new JSONObject();
 		params.put("chiRef", chiRef);
 		params.put("redeemOptions", new JSONObject(redeemOptions));

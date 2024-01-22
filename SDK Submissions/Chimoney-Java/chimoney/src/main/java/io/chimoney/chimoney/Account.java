@@ -26,9 +26,9 @@ public class Account extends Base {
 	 *
 	 * @param issueID the issueID of the transaction
 	 * @return a list of transactions
-	 * @throws Exception if an error occurs during the request
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getTransactionsByIssueID(String issueID) throws Exception {
+	public List<Object> getTransactionsByIssueID(String issueID) throws ChimoneyException {
 		return getTransactionsByIssueID(issueID, null);
 	}
 
@@ -38,9 +38,9 @@ public class Account extends Base {
 	 * @param issueID    the issue ID of the transactions to retrieve
 	 * @param subAccount the sub-account associated with the transactions
 	 * @return a list of transactions as objects
-	 * @throws Exception if an error occurs during the retrieval process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getTransactionsByIssueID(String issueID, String subAccount) throws Exception {
+	public List<Object> getTransactionsByIssueID(String issueID, String subAccount) throws ChimoneyException {
 		JSONObject jsonParams = new JSONObject();
 
 		if (subAccount != null)
@@ -61,9 +61,9 @@ public class Account extends Base {
 	 * @param userID   the ID of the user
 	 * @param linkCode the link code associated with the user
 	 * @return a map containing the profile information
-	 * @throws Exception if an error occurs during the API request
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getProfile(String userID, String linkCode) throws Exception {
+	public Map<String, Object> getProfile(String userID, String linkCode) throws ChimoneyException {
 		return getProfile(userID, linkCode, null);
 	}
 
@@ -76,9 +76,9 @@ public class Account extends Base {
 	 * @param linkCode   the link code associated with the user
 	 * @param subAccount the sub-account associated with the user
 	 * @return a map containing the profile information
-	 * @throws Exception if there is an error retrieving the profile
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getProfile(String userID, String linkCode, String subAccount) throws Exception {
+	public Map<String, Object> getProfile(String userID, String linkCode, String subAccount) throws ChimoneyException {
 		JSONObject jsonParams = new JSONObject();
 		if (userID != null)
 			jsonParams.put("userID", userID);
@@ -100,9 +100,9 @@ public class Account extends Base {
 	 * Retrieves a list of transactions for this account.
 	 *
 	 * @return a list of transactions for this account
-	 * @throws Exception if an error occurs while retrieving the transactions
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getTransactionsByAccount() throws Exception {
+	public List<Object> getTransactionsByAccount() throws ChimoneyException {
 		return getTransactionsByAccount(null);
 	}
 
@@ -111,9 +111,9 @@ public class Account extends Base {
 	 *
 	 * @param subAccount the subAccount for which to retrieve transactions
 	 * @return a list of transactions as objects
-	 * @throws Exception if an error occurs during the request
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getTransactionsByAccount(String subAccount) throws Exception {
+	public List<Object> getTransactionsByAccount(String subAccount) throws ChimoneyException {
 		JSONObject jsonParams = new JSONObject();
 		jsonParams.put("subAccount", subAccount);
 
@@ -128,9 +128,9 @@ public class Account extends Base {
 	 *
 	 * @param id The ID of the transaction to retrieve.
 	 * @return A map containing the transaction data.
-	 * @throws Exception If an error occurs while retrieving the transaction.
+	 * @throws ChimoneyException If an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getTransaction(String id) throws Exception {
+	public Map<String, Object> getTransaction(String id) throws ChimoneyException {
 		return getTransaction(id, null);
 	}
 
@@ -140,9 +140,9 @@ public class Account extends Base {
 	 * @param id         The ID of the transaction to retrieve.
 	 * @param subAccount The sub-account associated with the transaction.
 	 * @return A map containing the transaction data.
-	 * @throws Exception If an error occurs while retrieving the transaction.
+	 * @throws ChimoneyException If an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getTransaction(String id, String subAccount) throws Exception {
+	public Map<String, Object> getTransaction(String id, String subAccount) throws ChimoneyException {
 		JSONObject jsonParams = new JSONObject();
 
 		if (subAccount != null)
@@ -160,9 +160,9 @@ public class Account extends Base {
 	 * @param receiver   the ID of the recipient of the funds
 	 * @param valueInUSD the amount to transfer in USD
 	 * @return a map containing the details of the transfer
-	 * @throws Exception if an error occurs during the transfer
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> accountTransfer(String receiver, int valueInUSD) throws Exception {
+	public Map<String, Object> accountTransfer(String receiver, int valueInUSD) throws ChimoneyException {
 		return accountTransfer(receiver, valueInUSD, null, null);
 	}
 
@@ -173,9 +173,10 @@ public class Account extends Base {
 	 * @param valueInUSD the amount to transfer in USD
 	 * @param wallet     the wallet type to use for the transfer
 	 * @return a map containing the details of the transfer
-	 * @throws Exception if an error occurs during the transfer
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> accountTransfer(String receiver, int valueInUSD, Wallet.Types wallet) throws Exception {
+	public Map<String, Object> accountTransfer(String receiver, int valueInUSD, Wallet.Types wallet)
+			throws ChimoneyException {
 		return accountTransfer(receiver, valueInUSD, wallet, null);
 	}
 
@@ -187,10 +188,10 @@ public class Account extends Base {
 	 * @param wallet     the wallet type to use for the transfer
 	 * @param subAccount the sub-account to use for the transfer
 	 * @return a map containing the response data from the transfer operation
-	 * @throws Exception if an error occurs during the transfer
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> accountTransfer(String receiver, int valueInUSD, Wallet.Types wallet, String subAccount)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject jsonParams = new JSONObject();
 		jsonParams.put("receiver", receiver);
 		jsonParams.put("valueInUSD", valueInUSD);
@@ -212,9 +213,9 @@ public class Account extends Base {
 	 *
 	 * @param chiRef the reference of the transaction to be deleted
 	 * @return a map containing the result of the deletion operation
-	 * @throws Exception if an error occurs during the deletion process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> deleteUnpaidTransaction(String chiRef) throws Exception {
+	public Map<String, Object> deleteUnpaidTransaction(String chiRef) throws ChimoneyException {
 		return deleteUnpaidTransaction(chiRef, null);
 	}
 
@@ -224,10 +225,10 @@ public class Account extends Base {
 	 * @param chiRef     the reference of the transaction to be deleted
 	 * @param subAccount the subAccount associated with the transaction
 	 * @return a map containing the data of the deleted transaction
-	 * @throws Exception if an error occurs during the deletion process
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public Map<String, Object> deleteUnpaidTransaction(String chiRef, String subAccount)
-			throws Exception {
+			throws ChimoneyException {
 		String ext = subAccount != null ? "&subAccount=" + subAccount : "";
 		HttpResponse<String> response = handleDELETERequest(
 				"accounts/delete-unpaid-transaction?chiRef=" + chiRef + ext);

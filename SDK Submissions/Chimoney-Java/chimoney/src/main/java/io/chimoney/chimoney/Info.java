@@ -26,10 +26,10 @@ public class Info extends Base {
 	/**
 	 * Retrieves a list of countries that support airtime.
 	 *
-	 * @return A list of countries.
-	 * @throws Exception If an error occurs while making the API request.
+	 * @return a list of countries
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getAirtimeCountries() throws Exception {
+	public List<Object> getAirtimeCountries() throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest("info/airtime-countries");
 		JSONObject jo = parseJSONData(response);
 
@@ -39,21 +39,21 @@ public class Info extends Base {
 	/**
 	 * Retrieves the information of all assets.
 	 *
-	 * @return A map containing the assets information.
-	 * @throws Exception If an error occurs while retrieving the assets information.
+	 * @return a map containing the assets information
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getAssets() throws Exception {
+	public Map<String, Object> getAssets() throws ChimoneyException {
 		return getAssets(null);
 	}
 
 	/**
 	 * Retrieves the assets for a specific country.
 	 *
-	 * @param countryCode The country code for which to retrieve the assets.
-	 * @return A map containing the assets information.
-	 * @throws Exception If an error occurs while retrieving the assets.
+	 * @param countryCode the country code for which to retrieve the assets
+	 * @return a map containing the assets information
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getAssets(String countryCode) throws Exception {
+	public Map<String, Object> getAssets(String countryCode) throws ChimoneyException {
 		String queryString = countryCode != null ? "?countryCode=" + countryCode : "";
 		HttpResponse<String> response = handleGETRequest("info/assets" + queryString);
 		JSONObject jo = parseJSONData(response);
@@ -67,9 +67,9 @@ public class Info extends Base {
 	 *
 	 * @param countryCode the country code for which to retrieve the banks
 	 * @return a list of banks and bank codes
-	 * @throws Exception if an error occurs during the API request or JSON parsing
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getBanks(String countryCode) throws Exception {
+	public List<Object> getBanks(String countryCode) throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest("info/country-banks?countryCode=" + countryCode);
 		JSONObject jo = parseJSONData(response);
 
@@ -82,9 +82,9 @@ public class Info extends Base {
 	 *
 	 * @param bankCode the code of the bank
 	 * @return a list of bank branches and branch codes
-	 * @throws Exception if an error occurs during the API request
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getBankBranches(String bankCode) throws Exception {
+	public List<Object> getBankBranches(String bankCode) throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest("info/bank-branches?bankCode=" + bankCode);
 		JSONObject jo = parseJSONData(response);
 
@@ -94,11 +94,10 @@ public class Info extends Base {
 	/**
 	 * Retrieves the exchange rates against the USD.
 	 *
-	 * @return A map containing the exchange rates.
-	 * @throws Exception If an error occurs while making the API request or parsing
-	 *                   the response.
+	 * @return a map containing the exchange rates
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> getExchangeRates() throws Exception {
+	public Map<String, Object> getExchangeRates() throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest("info/exchange-rates");
 		JSONObject jo = parseJSONData(response);
 
@@ -110,12 +109,12 @@ public class Info extends Base {
 	 *
 	 * @param currency               The currency to convert from. Check the
 	 *                               Chimoney API documentation for currency
-	 *                               symbols.
-	 * @param amountInOriginCurrency The amount in the origin currency to convert.
-	 * @return A map containing the converted amount in USD.
-	 * @throws Exception If an error occurs during the conversion process.
+	 *                               symbols
+	 * @param amountInOriginCurrency the amount in the origin currency to convert
+	 * @return a map containing the converted amount in USD
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> convertToUSD(String currency, int amountInOriginCurrency) throws Exception {
+	public Map<String, Object> convertToUSD(String currency, int amountInOriginCurrency) throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest(
 				"info/local-amount-in-usd?originCurrency=" + currency + "&amountInOriginCurrency="
 						+ amountInOriginCurrency);
@@ -127,13 +126,13 @@ public class Info extends Base {
 	/**
 	 * Converts the specified amount in USD to the specified currency.
 	 *
-	 * @param currency    The destination currency to convert to. Check the Chimoney
-	 *                    API documentation for currency symbols.
-	 * @param amountInUSD The amount in USD to convert.
-	 * @return A map containing the converted amount in the destination currency.
-	 * @throws Exception If an error occurs during the conversion process.
+	 * @param currency    the destination currency to convert to. Check the Chimoney
+	 *                    API documentation for currency symbols
+	 * @param amountInUSD the amount in USD to convert
+	 * @return a map containing the converted amount in the destination currency
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public Map<String, Object> convertFromUSD(String currency, int amountInUSD) throws Exception {
+	public Map<String, Object> convertFromUSD(String currency, int amountInUSD) throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest(
 				"info/usd-amount-in-local?destinationCurrency=" + currency + "&amountInUSD=" + amountInUSD);
 		JSONObject jo = parseJSONData(response);
@@ -144,11 +143,10 @@ public class Info extends Base {
 	/**
 	 * Retrieves a list of all supported mobile money codes.
 	 * 
-	 * @return A list of mobile money codes.
-	 * @throws Exception If an error occurs while making the HTTP request or parsing
-	 *                   the JSON data.
+	 * @return a list of mobile money codes
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
-	public List<Object> getMobileMoneyCodes() throws Exception {
+	public List<Object> getMobileMoneyCodes() throws ChimoneyException {
 		HttpResponse<String> response = handleGETRequest("info/mobile-money-codes");
 		JSONObject jo = parseJSONData(response);
 
@@ -164,14 +162,14 @@ public class Info extends Base {
 	 * account number. Otherwise, use {@link #verifyBankAccountNumbers(Map)}
 	 * </p>
 	 * 
-	 * @param countryCode   The country code of the bank account.
-	 * @param bankCode      The bank code of the bank account.
-	 * @param accountNumber The account number of the bank account.
-	 * @return A list containing only the verified bank account number.
-	 * @throws Exception If an error occurs during the verification process.
+	 * @param countryCode   the country code of the bank account
+	 * @param bankCode      the bank code of the bank account
+	 * @param accountNumber the account number of the bank account
+	 * @return a list containing only the verified bank account number
+	 * @throws ChimoneyException if an error is returned by the Chimoney API
 	 */
 	public List<Object> verifyBankAccountNumber(String countryCode, String bankCode, String accountNumber)
-			throws Exception {
+			throws ChimoneyException {
 		JSONObject paramsJson = new JSONObject();
 		JSONArray ja = new JSONArray();
 
@@ -205,15 +203,14 @@ public class Info extends Base {
 	 * Otherwise, use {@link #verifyBankAccountNumber}
 	 * </p>
 	 * 
-	 * @param map The map containing arrays of country codes, bank codes, and
-	 *            account numbers.
-	 * @return A list of verified bank account numbers.
-	 * @throws IllegalArgumentException If the arrays in the map are not of the same
-	 *                                  size.
-	 * @throws Exception                If an error occurs during the verification
-	 *                                  process.
+	 * @param map the map containing arrays of country codes, bank codes, and
+	 *            account numbers
+	 * @return a list of verified bank account numbers
+	 * @throws IllegalArgumentException if the arrays in the map are not of the same
+	 *                                  size
+	 * @throws ChimoneyException        if an error is returned by the Chimoney API
 	 */
-	public List<Object> verifyBankAccountNumbers(Map<String, String[]> map) throws Exception {
+	public List<Object> verifyBankAccountNumbers(Map<String, String[]> map) throws ChimoneyException {
 
 		if ((map.get("countryCode").length != map.get("bankCode").length)
 				&& (map.get("countryCode").length != map.get("accountNumber").length)) {
