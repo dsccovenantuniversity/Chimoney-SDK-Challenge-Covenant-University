@@ -1,0 +1,5 @@
+.vscode/
+code/
+target/
+.env
+Test*.java
